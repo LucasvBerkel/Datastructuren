@@ -71,8 +71,9 @@ public class test{
 					counter++;
 				}
 			}
+			System.out.println(i);
 		}
-		System.out.println(counter);
+		System.out.println(counter + "/" + samples.length);
 		return counter;
 	}
 }
