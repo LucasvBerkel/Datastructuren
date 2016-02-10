@@ -3,8 +3,7 @@ import java.util.*;
 
 public class test{
 
-	public static int getLineCount(String textFile){
-		File file = new File(textFile);
+	public static int getLineCount(File file){
 		BufferedReader reader = null;
 		Integer counter = 0;	
 		try {
@@ -27,8 +26,7 @@ public class test{
 		return counter;
 	}
 
-	public static String[] makeArray(String textFile, int counter){
-		File file = new File(textFile);
+	public static String[] makeArray(File file, int counter){
 		BufferedReader reader = null;
 		String[] datastructure = new String[counter];
 		try {
@@ -48,8 +46,15 @@ public class test{
 	}
 
 	public static void main(String[] args){
-		int counter = getLineCount("wordlist.txt");
-		String[] wordList = makeArray("wordlist.txt", counter);
-		System.out.println(wordList[10000]);
+		File file = new File("wordlist.txt");
+		int counter = getLineCount(file);
+		String[] wordList = makeArray(file, counter);
+		File dir = new File("Samples/");
+		File listDir[] = dir.listFiles();
+		counter = getLineCount(listDir[0]);
+		String[] sampleList = makeArray(listDir[0], counter);
+		System.out.println(listDir[0]);
+		System.out.println(sampleList[90]);
+		System.out.println(wordList[90]);
 	}
 }
