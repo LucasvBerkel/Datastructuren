@@ -53,23 +53,26 @@ public class test{
 		File listDir[] = dir.listFiles();
 		counter = getLineCount(listDir[0]);
 		String[] sampleList = makeArray(listDir[0], counter);
+		long startTime = System.currentTimeMillis();
 		checkSample(sampleList, wordList);
+		long endTime   = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println(totalTime);
+
 	}
 
-	public static String checkSample(String[] samples, String[] wordList){
+	public static int checkSample(String[] samples, String[] wordList){
 		int counter = 0;
-		System.out.println(samples.length);
-		System.out.println(wordList.length);
 		for (int i = 0; i < samples.length; i++){
-			String word1 = samples[i].getText();
+			String word1 = samples[i];
 			for(int j = 0; j < wordList.length; j ++){
-				String word2 = wordList[j].getText();
-				if(word1.equals(word2))
+				String word2 = wordList[j];
+				if(word1.equals(word2)){
 					counter++;
-				if(j%100000 == 0)System.out.println(i);
+				}
 			}
 		}
 		System.out.println(counter);
-		return "hoi";
+		return counter;
 	}
 }
