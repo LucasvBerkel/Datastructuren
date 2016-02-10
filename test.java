@@ -51,14 +51,16 @@ public class test{
 		String[] wordList = makeArray(file, counter);
 		File dir = new File("Samples/");
 		File listDir[] = dir.listFiles();
-		counter = getLineCount(listDir[0]);
-		String[] sampleList = makeArray(listDir[0], counter);
-		long startTime = System.currentTimeMillis();
-		checkSample(sampleList, wordList);
-		long endTime   = System.currentTimeMillis();
-		long totalTime = endTime - startTime;
-		System.out.println(totalTime);
-
+		for(File f : listDir){
+			System.out.println(f.getName());
+			counter = getLineCount(f);
+			String[] sampleList = makeArray(f, counter);
+			long startTime = System.currentTimeMillis();
+			checkSample(sampleList, wordList);
+			long endTime   = System.currentTimeMillis();
+			long totalTime = endTime - startTime;
+			System.out.println(totalTime);
+		}
 	}
 
 	public static int checkSample(String[] samples, String[] wordList){
@@ -69,6 +71,7 @@ public class test{
 				String word2 = wordList[j];
 				if(word1.equals(word2)){
 					counter++;
+					break;
 				}
 			}
 			System.out.println(i);
