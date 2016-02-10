@@ -5,20 +5,20 @@ public class test{
 
 	public static int getLineCount(String textFile){
 		File file = new File(textFile);
-		BufferedReader firstReader = null;
+		BufferedReader reader = null;
 		Integer counter = 0;	
 		try {
-		    firstReader = new BufferedReader(new FileReader(file));
+		    reader = new BufferedReader(new FileReader(file));
 		    String text = null;
-		    while ((text = firstReader.readLine()) != null) counter ++;
+		    while ((text = reader.readLine()) != null) counter ++;
 		} catch (FileNotFoundException e) {
 		    e.printStackTrace();
 		} catch (IOException e) {
 		    e.printStackTrace();
 		} finally {
 			try{
-		   		if (firstReader != null) {
-		    		firstReader.close();
+		   		if (reader != null) {
+		    		reader.close();
 		    	}
 			} catch(IOException e){
 				e.printStackTrace();
@@ -29,15 +29,15 @@ public class test{
 
 	public static String[] makeArray(String textFile, int counter){
 		File file = new File(textFile);
-		BufferedReader secondReader = null;
+		BufferedReader reader = null;
 		String[] datastructure = new String[counter];
 		try {
-		    secondReader = new BufferedReader(new FileReader(file));
+		    reader = new BufferedReader(new FileReader(file));
 		    for(int i = 0; i < counter; i++){
-		    	datastructure[i] = secondReader.readLine();
+		    	datastructure[i] = reader.readLine();
 		    }
-		    if (secondReader != null) {
-		       	secondReader.close();
+		    if (reader != null) {
+		       	reader.close();
 		    }
 		} catch (FileNotFoundException e) {
 		    e.printStackTrace();
