@@ -1,6 +1,10 @@
 import java.io.*;
 import java.util.*;
-
+/* MyHashMap.java,  DeletedEntry.java en MyHashEntry.java heb ik grotendeels van internet gehaald
+   om eerst uberhaupt te laten werken en dan te kijken hoe het nou precies werkte. Alleen zit ik 
+   nu met een paar foutmeldingen bij o.a. map.put(hashFunction(wordList[i]) en zit ik even vast.
+   De fouten heb ik er uit gehaald maar ik zit nu dus even vast.
+  */
 public class hashTableOANewHash extends MyHashMap{
 
 
@@ -21,6 +25,7 @@ public class hashTableOANewHash extends MyHashMap{
     			if (textLine.equals("exit")){
     				return;
     			}
+    			
 
     		}
     		catch (IOException e) {
