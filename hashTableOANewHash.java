@@ -5,18 +5,13 @@ import java.util.*;
    nu met een paar foutmeldingen bij o.a. map.put(hashFunction(wordList[i]) en zit ik even vast.
    De fouten heb ik er uit gehaald maar ik zit nu dus even vast.
   */
-public class hashTableOANewHash extends MyHashMap{
+public class hashTableOANewHash{
 
 
 	public static void main(String[] args){
 		File file = new File("wordlist.txt");
 		int counter = getLineCount(file);
 		String[] wordList = makeArray(file, counter);
-
-		MyHashMap map = new MyHashMap();
-		for(int i = 0; i < wordList.length; i++){
-			map.put(hashFunction(wordList[i]), i);
-		}	
 
 		BufferedReader lineOfText = new BufferedReader(new InputStreamReader(System.in));
 		while (true) {
@@ -25,8 +20,6 @@ public class hashTableOANewHash extends MyHashMap{
     			if (textLine.equals("exit")){
     				return;
     			}
-    			
-
     		}
     		catch (IOException e) {
     		}
@@ -35,9 +28,9 @@ public class hashTableOANewHash extends MyHashMap{
 
 	  private static int hashFunction(String word){
 	        int hash = word.charAt(0);
-	        //for(int i = 0; i < word.length(); i++){
+	        for(int i = 0; i < word.length(); i++){
 	            //  hash = (hash * 31) + word.charAt(i) % 100;
-	        //}
+	        }
 	        return hash;
 	  }
 
