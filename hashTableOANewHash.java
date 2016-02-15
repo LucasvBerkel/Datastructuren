@@ -1,17 +1,16 @@
 import java.io.*;
 import java.util.*;
-/* MyHashMap.java,  DeletedEntry.java en MyHashEntry.java heb ik grotendeels van internet gehaald
-   om eerst uberhaupt te laten werken en dan te kijken hoe het nou precies werkte. Alleen zit ik 
-   nu met een paar foutmeldingen bij o.a. map.put(hashFunction(wordList[i]) en zit ik even vast.
-   De fouten heb ik er uit gehaald maar ik zit nu dus even vast.
-  */
+
 public class hashTableOANewHash{
-
-
 	public static void main(String[] args){
 		File file = new File("wordlist.txt");
 		int counter = getLineCount(file);
-		String[] wordList = makeArray(file, counter);
+		//String[] wordList = makeArray(file, counter);
+		//Int[] keys;
+		//for (int i = 0; wordList.length; i++){
+		//	keys[i] = keyFunction(wordList[i]);
+		//}
+		boolean[] hasBeenUsed;
 
 		BufferedReader lineOfText = new BufferedReader(new InputStreamReader(System.in));
 		while (true) {
@@ -25,15 +24,33 @@ public class hashTableOANewHash{
     		}
 		}	
 	}
+	/*
+	private static boolean searchFunction(int[] keys, int key){
+		// zolang een van de keys != key of een van de keys = "DeleteMe", 
+		// blijf proberen tot het lukt, dan return true
+		// als geen succes en een lege plek return false
+	}
 
-	  private static int hashFunction(String word){
-	        int hash = word.charAt(0);
-	        for(int i = 0; i < word.length(); i++){
-	            //  hash = (hash * 31) + word.charAt(i) % 100;
-	        }
-	        return hash;
-	  }
+	private static int insertFunction(String[] keys, int[] value){
+		// blijf proberen tot er een lege plek wordt gevonden, insert
+		// element op die plek. 
+	}
 
+	private static String deleteFunction(int key){
+		// vervang verwijderde item met "DeleteMe"
+	}
+
+	private static int hashFunction(int[] key, int trialCount){
+		// moet een permutatie worden van 0,1,..,m-1   m = wordList.length 
+	}
+	*/
+	private static int keyFunction(String word){
+        int key = 7; 
+        for(int i = 0; i < word.length(); i++){
+            key = (key * 31) + word.charAt(i) % 100;
+        }
+        return key;
+	 }
 
 	// Read file into array datastructure.
 	public static String[] makeArray(File file, int counter){
