@@ -1,13 +1,1 @@
 Filename: sample_0OXg@T=T55.txt
-Correct samples/total: 9974/10000
-Nanoseconds: 47715861000
-
-Filename: sample_10wsogiLdW=.txt
-Correct samples/total: 19727/20000
-Nanoseconds: 101755183000
-
-Filename: sample_15ONfIJ1D=g.txt
-Correct samples/total: 19676/20000
-Nanoseconds: 21496565050000
-
-Filename: sample_18ywQoP^]I.txt
