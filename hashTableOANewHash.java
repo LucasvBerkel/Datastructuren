@@ -69,7 +69,7 @@ public class hashTableOANewHash{
 		   		if (line == null){
 		   			break;
 		   		}
-		    	count = map.Search(line) ? count + 1 : count;	 
+		    	count = map.Search(line) ? count + 1 : count;	 // X ? A : B voert wanneer X true is A uit en wanneer X false is B. 
 		    }
 		} catch (FileNotFoundException e) {
 		    e.printStackTrace();
