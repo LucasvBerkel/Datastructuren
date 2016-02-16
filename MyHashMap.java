@@ -6,7 +6,7 @@ public class MyHashMap{
 	MyCluster[] m_clusters;
 
 	public MyHashMap(){
-		m_clusters = new MyCluster[52];
+		m_clusters = new MyCluster[53];
 
 		for (int i = 0; i < m_clusters.length; i++){
 			m_clusters[i] = new MyCluster();
@@ -38,7 +38,7 @@ public class MyHashMap{
 			return INVALID;
 		}
 
-		int hash = INVALID;
+		int hash = 52;
 		if ((word.charAt(0) >= 'a') && (word.charAt(0) <= 'z')){
 			hash = word.charAt(0) - 'a';
 		}

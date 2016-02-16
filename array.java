@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class hashTableOANewHash{
+public class array{
 
 	// Run the program.
 	public static void main(String[] args){
@@ -36,12 +36,10 @@ public class hashTableOANewHash{
 	public static String[] makeArray(File file, int counter){
 		BufferedReader reader = null;
 		String[] datastructure = new String[counter];
-		String text;
 		try {
 		    reader = new BufferedReader(new FileReader(file));
 		    for(int i = 0; i < counter; i++){
-		    	text = reader.readLine();
-		    	put(text, datastructure);
+		    	datastructure[i] = reader.readLine();
 		    }
 		    if (reader != null) {
 		       	reader.close();
@@ -58,7 +56,12 @@ public class hashTableOANewHash{
 	public static String checkSample(String[] samples, String[] wordList){
 		int counter = 0;
 		for (int i = 0; i < samples.length; i++){
-			counter += checkWord(samples[i], wordList);
+			for(int j = 0; j < wordList.length; j ++){
+				if(samples[i].equals(wordList[j])){
+					counter++;
+					break;
+				}
+			}
 		}
 		return counter + "/" + samples.length;
 	}
@@ -71,7 +74,7 @@ public class hashTableOANewHash{
 		File dir = new File("Samples/");
 		File listDir[] = dir.listFiles();
 		try {
-	      	PrintStream out = new PrintStream(new FileOutputStream("openAddressingResults.txt"));
+	      	PrintStream out = new PrintStream(new FileOutputStream("arrayResults.txt"));
 		    for(File f : listDir){
 				out.println("Filename: " + f.getName());
 				counter = getLineCount(f);
@@ -88,60 +91,5 @@ public class hashTableOANewHash{
 	    } catch (FileNotFoundException e) {
 	      e.printStackTrace();
 	    }
-	}
-
-	public static int hashFunction(String word, int lengthArray){
-		int hash = 26;
-		if ((word.charAt(0) >= 'a') && (word.charAt(0) <= 'z')){
-			hash = word.charAt(0) - 'a';
-		}
-		else if ((word.charAt(0) >= 'A') && (word.charAt(0) <= 'Z')){
-			hash = word.charAt(0) - 'A';
-		}
-		int clusterSize = lengthArray/27;
-		hash = hash*clusterSize;
-		return hash;
-	}
-
-	public static void put(String text, String[] datastructure){
-		int hash = hashFunction(text, datastructure.length);
-		boolean check = true;
-		for(int i = hash; i < datastructure.length; i++){
-			if(datastructure[i] == null){
-				datastructure[i] = text;
-				check = false;
-				break;
-			}
-		}
-		if(check){
-			for(int i = 0; i < hash; i++){
-				if(datastructure[i] == null){
-					datastructure[i] = text;
-					break;
-				}
-			}
-		}
-	}
-
-	public static int checkWord(String text, String[] wordList){
-		int counter = 0;
-		int hash = hashFunction(text, wordList.length);
-		boolean check = true;
-		for(int j = hash; j < wordList.length; j ++){
-			if(text.equals(wordList[j])){
-				counter = 1;
-				check = false;
-				break;
-			}
-		}
-		if(check){
-			for(int j = 0; j < hash; j ++){
-				if(text.equals(wordList[j])){
-					counter = 1;
-					break;
-				}
-			}
-		}
-		return counter;
 	}
 }
