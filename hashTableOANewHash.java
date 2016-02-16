@@ -9,10 +9,34 @@ public class hashTableOANewHash{
 		Writer("wordlist.txt", m_map);
 
 		int foundCount = 0;
-		foundCount += Searcher("sample_0OXg@T=T55.txt", m_map);
+		long startTime = System.nanoTime();
+		foundCount += Searcher("sample_8Lg2uNPd22[.txt", m_map);
+		long endTime   = System.nanoTime();
+		long totalTime = endTime - startTime;
 		System.out.println(foundCount);
+		System.out.println(totalTime);
 
 		while (!terminalCom(m_map));
+	}
+
+	public static void fileResults(){
+		File file = new File("wordlist.txt");
+		File dir = new File("Samples/");
+		File listDir[] = dir.listFiles();
+		try {
+	      	PrintStream out = new PrintStream(new FileOutputStream("openAdressingResults.txt"));
+		    for(File f : listDir){
+				out.println("Filename: " + f.getName());
+				long startTime = System.nanoTime();
+				out.println("Correct samples/total: " + "Searcher(f.getName(), m_map))");
+				long endTime   = System.nanoTime();
+				long totalTime = endTime - startTime;
+				out.println("Nanoseconds: " + totalTime + '\n');
+			}
+		    out.close();
+	    } catch (FileNotFoundException e) {
+	      e.printStackTrace();
+	    }
 	}
 
 	private static void Writer(String fileName, MyHashMap map){
