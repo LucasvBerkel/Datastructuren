@@ -5,13 +5,13 @@ public class array extends extraFunctions{
 
 	// Run the program.
 	public static void main(String[] args){
-		fileResults();
+		File file = new File("wordlist.txt");
+		MyArraylist wordList = writeToArrayList(file);
+		fileResults(wordList);
 	}
 
 	// Save results in .txt file. 
-	public static void fileResults(){
-		File file = new File("wordlist.txt");
-		MyArraylist wordList = writeToArrayList(file);
+	public static void fileResults(MyArraylist wordList){
 		File dir = new File("Samples/");
 		File listDir[] = dir.listFiles();
 		try {

@@ -1,8 +1,17 @@
+// Authors:
+// Lucas van Berkel, 10747958
+// Joël Meyer, 10003539
+
 import java.util.*;
 import java.io.*;
 
 public class trie extends extraFunctions{
 
+	// Start function, initializes the root of the trie. The allChars function takes the vocabulary 
+	// and creates an array containing all the characters in the vocabulary.
+	// From there the amount of children is initialised.
+	// Takes no input(s):
+	// Delivers no output(s):
 	public static void main(String[] args){
 		File file = new File("wordlist.txt");
 		MyTrie trie = new MyTrie();
@@ -13,6 +22,10 @@ public class trie extends extraFunctions{
 		fileResults(trie);
 	}
 
+	// Lists all the sample files and prints the results a file in a txt file.
+	// Input(s):
+	// - trie, objectlike to a trie, the used datastructure
+	// Delivers no output(s):
 	public static void fileResults(MyTrie trie){
 		File dir = new File("Samples/");
 		File listDir[] = dir.listFiles();
@@ -34,6 +47,10 @@ public class trie extends extraFunctions{
 	    }
 	}
 
+	// Takes the vocabulary and adds them to the trie.
+	// Input(s):
+	// - file, the vocabulary file
+	// Delivers no output(s):
 	private static void writeToTrie(File file, MyTrie trie){
 		try {
 		    BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -51,6 +68,12 @@ public class trie extends extraFunctions{
 		}
 	}
 
+	// Takes the sample file and searches each word in the trie.
+	// Input(s):
+	// - file, the sample file to be checked
+	// - trie, the used datastructure
+	// Output(s):
+	// - counter[], a int array containing the matched words and the length of the file
 	private static int[] searchInTrie(File file, MyTrie trie){
 		int counter[] = new int[2];
 		counter[0] = 0;
@@ -62,7 +85,7 @@ public class trie extends extraFunctions{
 		   		if (line == null){
 		   			break;
 		   		}
-		    	counter[0] = trie.isWord(line) ? counter[0] + 1 : counter[0];	 // X ? A : B voert wanneer X true is A uit en wanneer X false is B. 
+		    	counter[0] = trie.isWord(line) ? counter[0] + 1 : counter[0]; 
 		    	counter[1] += 1;
 		    }
 		} catch (FileNotFoundException e) {

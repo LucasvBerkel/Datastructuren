@@ -1,20 +1,30 @@
+// Authors:
+// Lucas van Berkel, 10747958
+// Joël Meyer, 10003539
+
 import java.io.*;
 import java.util.*;
 
 public class hashTableOA extends extraFunctions{
 
-	// Run the program.
+	// Start function, initializes the vocabulary and makes a temporary array. The temp-array is used to make the categorized HashTableOA,
+	// OA stands for Open Addressing
+	// Takes no input(s):
+	// Delivers no output(s):
 	public static void main(String[] args){
-		fileResults();
-	}
-
-	// Save results in .txt file. 
-	public static void fileResults(){
 		File file = new File("wordlist.txt");
 		String[] tempArray = makeArray(file);
 		MyHashTableOA m_table = new MyHashTableOA(tempArray.length);
 		writeToHashTableOA(tempArray, m_table);
-		File dir = new File("test/");
+		fileResults(m_table);
+	}
+
+	// Lists all the sample files and prints the results a file in a txt file.
+	// Input(s):
+	// - m_table, objectlike to a HashTable using OpenAddressing
+	// Delivers no output(s):
+	public static void fileResults(MyHashTableOA m_table){
+		File dir = new File("Samples/");
 		File listDir[] = dir.listFiles();
 		try {
 	      	PrintStream out = new PrintStream(new FileOutputStream("openAddressingResults.txt"));
@@ -34,6 +44,11 @@ public class hashTableOA extends extraFunctions{
 	    }
 	}
 
+	// Takes the temp-array and copies it more less to the HashTable, categorized using the hashfunction
+	// Input(s):
+	// - array, the temp-array containing the vocabulary
+	// - m_table, the HashTable constructed earlier
+	// Delivers no output(s):
 	public static void writeToHashTableOA(String[] array, MyHashTableOA m_table){
 		int hash = 0;
 		for(int j = 0; j < m_table.length; j++){
@@ -57,6 +72,12 @@ public class hashTableOA extends extraFunctions{
 		}
 	}
 
+	// Takes a sample file and retrieves the words from it. Every word is searched through the HashTable
+	// Input(s):
+	// - file, the sample file to be checked
+	// - m_table, the HashTable constructed earlier
+	// Output(s):
+	// - counter[], a int array containing the matched words and the length of the file
 	public static int[] searchInHashTableOA(File file, MyHashTableOA m_table){
 		int counter[] = new int[2];
 		counter[0] = 0;
@@ -68,7 +89,7 @@ public class hashTableOA extends extraFunctions{
 		   		if (line == null){
 		   			break;
 		   		}
-		    	counter[0] = m_table.checkWord(line) ? counter[0] + 1 : counter[0];	 // X ? A : B voert wanneer X true is A uit en wanneer X false is B. 
+		    	counter[0] = m_table.checkWord(line) ? counter[0] + 1 : counter[0];
 		    	counter[1] += 1;
 		    }
 		} catch (FileNotFoundException e) {

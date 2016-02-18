@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class hashTableOANewHash{
+public class test{
 
 	// Run the program.
 	public static void main(String[] args){
