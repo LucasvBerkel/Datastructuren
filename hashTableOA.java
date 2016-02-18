@@ -13,7 +13,7 @@ public class hashTableOA extends extraFunctions{
 		File file = new File("wordlist.txt");
 		String[] tempArray = makeArray(file);
 		MyHashTableOA m_table = new MyHashTableOA(tempArray.length);
-		m_table.writeToHashTableOA(tempArray);
+		writeToHashTableOA(tempArray, m_table);
 		File dir = new File("test/");
 		File listDir[] = dir.listFiles();
 		try {
@@ -21,11 +21,11 @@ public class hashTableOA extends extraFunctions{
 		    for(File f : listDir){
 				out.println("Filename: " + f.getName());
 				long startTime = System.nanoTime();
-				String result = searchInHashTableOA(f, m_table);
+				int[] counter = searchInHashTableOA(f, m_table);
 				long endTime   = System.nanoTime();
 				long totalTime = endTime - startTime;
 				System.out.println(f.getName());
-				out.println("Correct samples/total: " + result);
+				out.println("Correct samples/total: " + counter[0] + "/" + counter[1]);
 				out.println("Nanoseconds: " + totalTime + '\n');
 			}
 		    out.close();
@@ -37,19 +37,19 @@ public class hashTableOA extends extraFunctions{
 	public static void writeToHashTableOA(String[] array, MyHashTableOA m_table){
 		int hash = 0;
 		for(int j = 0; j < m_table.length; j++){
-			hash = hashFunction(array[j]);
+			hash = m_table.hashFunction(array[j]);
 			boolean check = true;
 			for(int i = hash; i < m_table.length; i++){
-				if(m_array[i] == null){
-					m_array[i] = array[i];
+				if(m_table.m_array[i] == null){
+					m_table.m_array[i] = array[i];
 					check = false;
 					break;
 				}
 			}
 			if(check){
 				for(int i = 0; i < hash; i++){
-					if(m_array[i] == null){
-						m_array[i] = array[i];
+					if(m_table.m_array[i] == null){
+						m_table.m_array[i] = array[i];
 						break;
 					}
 				}
@@ -68,7 +68,7 @@ public class hashTableOA extends extraFunctions{
 		   		if (line == null){
 		   			break;
 		   		}
-		    	counter[0] = m_array.search(line) ? counter[0] + 1 : counter[0];	 // X ? A : B voert wanneer X true is A uit en wanneer X false is B. 
+		    	counter[0] = m_table.checkWord(line) ? counter[0] + 1 : counter[0];	 // X ? A : B voert wanneer X true is A uit en wanneer X false is B. 
 		    	counter[1] += 1;
 		    }
 		} catch (FileNotFoundException e) {
