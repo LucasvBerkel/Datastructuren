@@ -5,7 +5,7 @@ public class getChars{
 
 	public static char[] getAllChars(File file){
 		BufferedReader reader = null;
-		ArrayList<Character> list = new ArrayList<Character>();
+		MyArraylist list = new MyArraylist();
 		try {
 		    reader = new BufferedReader(new FileReader(file));
 		    String text;
@@ -25,21 +25,23 @@ public class getChars{
 				e.printStackTrace();
 			}
 		}
-		return objectArrayToCharArray(list.toArray());
+		return objectArrayToCharArray(list);
 	}
 
-	public static void checkForUniqueChars(String text, ArrayList<Character> list){
+	public static void checkForUniqueChars(String text, MyArraylist list){
 		for(int i = 0; i < text.length(); i++){
 			if(!list.contains(text.charAt(i))){
-				list.add(text.charAt(i));
+				list.put(String.valueOf(text.charAt(i)));
+				list.length();
 			}
 		}
 	}
 
-	public static char[] objectArrayToCharArray(Object[] temp){
-		char[] array = new char[temp.length];
-		for(int i = 0; i < temp.length; i ++){
-			array[i] = temp[i].toString().charAt(0);
+	public static char[] objectArrayToCharArray(MyArraylist list){
+		list.length();
+		char[] array = new char[list.length];
+		for(int i = 0; i < list.length; i ++){
+			array[i] = list.m_array[i].toString().charAt(0);
 		}
 		return array;
 	}

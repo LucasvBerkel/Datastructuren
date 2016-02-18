@@ -40,6 +40,25 @@ public class MyArraylist{
 		this.length = counter;
 	}
 
+	public boolean contains(char c){
+		String letter = "";
+		for(int i = 0; i < m_array.length; i++){
+			letter = m_array[i];
+			if(letter == null){
+				continue;
+			}
+			if(letter.charAt(0) == c){
+				return true;
+			}
+			// for(int j = i; j < m_array[i].length(); j++){
+			// 	if(m_array[i].charAt(j) == c){
+			// 		return true;
+			// 	}
+			// }
+		}
+		return false;
+	}
+
 	private void resize(){
 		String[] buffer = new String[m_array.length];
 		copy(m_array, buffer, m_array.length);

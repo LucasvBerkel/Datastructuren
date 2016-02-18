@@ -20,7 +20,7 @@ public class array{
 		   		if (line == null){
 		   			break;
 		   		}
-		    	datastructure.Put(line); 
+		    	datastructure.put(line); 
 		    }
 		    if (reader != null) {
 		       	reader.close();
@@ -38,7 +38,7 @@ public class array{
 		int counter = 0;
 		samples.length();
 		for (int i = 0; i < samples.length; i++){
-			if(wordList.Search(samples.m_array[i])){
+			if(wordList.search(samples.m_array[i])){
 				counter++;
 			}
 		}
