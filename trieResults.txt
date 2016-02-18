@@ -1,0 +1,124 @@
+Filename: .DS_Store
+Correct samples/total: 0/1
+Nanoseconds: 766208
+
+Filename: sample_0OXg@T=T55.txt
+Correct samples/total: 9976/10000
+Nanoseconds: 47292926
+
+Filename: sample_10wsogiLdW=.txt
+Correct samples/total: 19736/20000
+Nanoseconds: 83040521
+
+Filename: sample_15ONfIJ1D=g.txt
+Correct samples/total: 19682/20000
+Nanoseconds: 63634530
+
+Filename: sample_18ywQoP^]I.txt
+Correct samples/total: 10000/10000
+Nanoseconds: 33001384
+
+Filename: sample_24rQ[WUNIhd.txt
+Correct samples/total: 29100/30000
+Nanoseconds: 90310794
+
+Filename: sample_26Jdo5Z3d_0.txt
+Correct samples/total: 28945/30000
+Nanoseconds: 93875424
+
+Filename: sample_3B2_2GC8[M.txt
+Correct samples/total: 9997/10000
+Nanoseconds: 36135384
+
+Filename: sample_4s^U6a1^06.txt
+Correct samples/total: 10000/10000
+Nanoseconds: 35100535
+
+Filename: sample_8Lg2uNPd22[.txt
+Correct samples/total: 29126/30000
+Nanoseconds: 99320989
+
+Filename: sample_9TS_Fs4f17j.txt
+Correct samples/total: 19579/20000
+Nanoseconds: 59176512
+
+Filename: sample_B6JH16JohH9.txt
+Correct samples/total: 19673/20000
+Nanoseconds: 58659756
+
+Filename: sample_Do8D@6^MvZ.txt
+Correct samples/total: 9919/10000
+Nanoseconds: 338966026
+
+Filename: sample_EB1^j@13=8c.txt
+Correct samples/total: 19781/20000
+Nanoseconds: 60067223
+
+Filename: sample_H19_Uo81DhY.txt
+Correct samples/total: 19479/20000
+Nanoseconds: 59166694
+
+Filename: sample_H2d^Fw29mjq.txt
+Correct samples/total: 28694/30000
+Nanoseconds: 86286975
+
+Filename: sample_L[11U3fYc_E.txt
+Correct samples/total: 19755/20000
+Nanoseconds: 58643245
+
+Filename: sample_O4MBZ27gLgA.txt
+Correct samples/total: 28990/30000
+Nanoseconds: 87494522
+
+Filename: sample_ocBe18XVd0x.txt
+Correct samples/total: 19538/20000
+Nanoseconds: 61842397
+
+Filename: sample_OONncoB728I.txt
+Correct samples/total: 28852/30000
+Nanoseconds: 88600325
+
+Filename: sample_OtVTk]9Fe4.txt
+Correct samples/total: 9897/10000
+Nanoseconds: 31856311
+
+Filename: sample_o]_4D=12UBt.txt
+Correct samples/total: 19733/20000
+Nanoseconds: 59098419
+
+Filename: sample_RoxM;UvI14@.txt
+Correct samples/total: 19719/20000
+Nanoseconds: 59139473
+
+Filename: sample_SC`S212i2Od.txt
+Correct samples/total: 29253/30000
+Nanoseconds: 90107304
+
+Filename: sample_SZj^s2L20a1.txt
+Correct samples/total: 29161/30000
+Nanoseconds: 121913190
+
+Filename: sample_uk4]KY7thf.txt
+Correct samples/total: 9987/10000
+Nanoseconds: 30513105
+
+Filename: sample_Xef3p25N9oS.txt
+Correct samples/total: 28943/30000
+Nanoseconds: 89241137
+
+Filename: sample_YMJh]w2k5P.txt
+Correct samples/total: 10000/10000
+Nanoseconds: 29472454
+
+Filename: sample_[r23G7WAcjt.txt
+Correct samples/total: 29121/30000
+Nanoseconds: 86348557
+
+Filename: sample_]29pgao6lk.txt
+Correct samples/total: 9967/10000
+Nanoseconds: 30032942
+
+Filename: sample__in]Ot6R79.txt
+Correct samples/total: 9930/10000
+Nanoseconds: 33951892
+
