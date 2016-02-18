@@ -4,12 +4,12 @@ import java.util.*;
 public class hashTableCCNewHash{
 
 	public static void main(String[] args){
-		MyHashMap m_map = new MyHashMap();
-		Writer("wordlist.txt", m_map);
-		fileResults(m_map);
+		MyHashTable m_table = new MyHashTable();
+		Writer("wordlist.txt", m_table);
+		fileResults(m_table);
 	}
 
-	public static void fileResults(MyHashMap m_map){
+	public static void fileResults(MyHashTable m_table){
 		File dir = new File("Samples/");
 		File listDir[] = dir.listFiles();
 		try {
@@ -17,7 +17,7 @@ public class hashTableCCNewHash{
 		    for(File f : listDir){
 				out.println("Filename: " + f.getName());
 				long startTime = System.nanoTime();
-				int[] counter = Searcher(f.getName(), m_map);
+				int[] counter = Searcher(f.getName(), m_table);
 				long endTime   = System.nanoTime();
 				long totalTime = endTime - startTime;
 				out.println("Correct samples/total: " + counter[0] + "/" + counter[1]);
@@ -30,7 +30,7 @@ public class hashTableCCNewHash{
 	    }
 	}
 
-	private static void Writer(String fileName, MyHashMap map){
+	private static void Writer(String fileName, MyHashTable m_table){
 		File file = new File(fileName);
 		try {
 		    BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -39,8 +39,9 @@ public class hashTableCCNewHash{
 		   		if (line == null){
 		   			break;
 		   		}
-		    	map.Put(line); 	 
+		    	m_table.Put(line); 	 
 		    }
+		    m_table.writeLength();
 		} catch (FileNotFoundException e) {
 		    e.printStackTrace();
 		} catch (IOException e) {
@@ -50,7 +51,7 @@ public class hashTableCCNewHash{
 
 	// ipv int class Results, aantal items, hoeveelheid foute items, hoeveelheid goede items
 	// toString functie toevoegen welke string teruggeeft van de results
-	private static int[] Searcher(String fileName, MyHashMap map){
+	private static int[] Searcher(String fileName, MyHashTable m_table){
 		int counter[] = new int[2];
 		counter[0] = 0;
 		counter[1] = 0;
@@ -62,7 +63,8 @@ public class hashTableCCNewHash{
 		   		if (line == null){
 		   			break;
 		   		}
-		    	counter[0] = map.Search(line) ? counter[0] + 1 : counter[0];	 // X ? A : B voert wanneer X true is A uit en wanneer X false is B. 
+
+		    	counter[0] = m_table.Search(line) ? counter[0] + 1 : counter[0];	 // X ? A : B voert wanneer X true is A uit en wanneer X false is B. 
 		    	counter[1] += 1;
 		    }
 		} catch (FileNotFoundException e) {
