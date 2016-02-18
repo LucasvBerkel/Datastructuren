@@ -31,7 +31,7 @@ public class MyArraylist{
 	// - true if word is found, false if not.
 	public boolean search(String word){
 		for(int i = 0; i < this.length; i++){
-			if (m_array[i].equals(word)){
+			if (word.equals(m_array[i])){
 				return true;
 			} 
 		}
@@ -44,7 +44,6 @@ public class MyArraylist{
 	public void put(String word){
 		m_array[m_arrayCnt] = word;
 		m_arrayCnt++;
-
 		if (m_arrayCnt == m_array.length){
 			resize();
 		}
@@ -97,7 +96,7 @@ public class MyArraylist{
 		}
 	}
 
-	// Initialise values of array to null.
+	// Initialise values rest of array to null.
 	// Input(s):
 	// - index, index from where to null inputs.
 	private void clearData(int index){

@@ -8,15 +8,15 @@ import java.util.*;
 public class array extends extraFunctions{
 
 	public static void main(String[] args){
-		fileResults();
+		File file = new File("wordlist.txt");
+		MyArraylist wordList = writeToArrayList(file);
+		fileResults(wordList);
 	}
 
 	// Save results in .txt file. 
 	// Output(s):
 	// - arrayResults.txt, text file with results.
-	public static void fileResults(){
-		File file = new File("wordlist.txt");
-		MyArraylist wordList = writeToArrayList(file);
+	public static void fileResults(MyArraylist wordList){
 		File dir = new File("Samples/");
 		File listDir[] = dir.listFiles();
 		try {
@@ -75,6 +75,7 @@ public class array extends extraFunctions{
 		int counter[] = new int[2];
 		counter[0] = 0;
 		counter[1] = 0;
+		m_array.length();
 		try {
 		    BufferedReader reader = new BufferedReader(new FileReader(file));
 		    while (true){
@@ -82,7 +83,7 @@ public class array extends extraFunctions{
 		   		if (line == null){
 		   			break;
 		   		}
-		    	counter[0] = m_array.search(line) ? counter[0] + 1 : counter[0];	 // X ? A : B voert wanneer X true is A uit en wanneer X false is B. 
+		    	counter[0] = m_array.search(line) ? counter[0] + 1 : counter[0];
 		    	counter[1] += 1;
 		    }
 		} catch (FileNotFoundException e) {

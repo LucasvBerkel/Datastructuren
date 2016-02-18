@@ -78,7 +78,7 @@ public class hashTableCC extends extraFunctions{
 		   			break;
 		   		}
 
-		    	counter[0] = m_table.search(line) ? counter[0] + 1 : counter[0];	 // X ? A : B voert wanneer X true is A uit en wanneer X false is B. 
+		    	counter[0] = m_table.search(line) ? counter[0] + 1 : counter[0];
 		    	counter[1] += 1;
 		    }
 		} catch (FileNotFoundException e) {
