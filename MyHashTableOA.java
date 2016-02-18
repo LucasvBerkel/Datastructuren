@@ -33,8 +33,14 @@ public class MyHashTableOA{
 		}
 	}
 
-	private int hashFunction(String word){
-		int hash = 26;
+	public int hashFunction(String word){
+		int hash = word.length();
+		for(int i = 0; i < word.length(); i++){
+			hash = (hash * 31 + word.charAt(i));
+		}
+		return Math.abs(hash % m_array.length);
+
+	/*int hash = 26;
 		if ((word.charAt(0) >= 'a') && (word.charAt(0) <= 'z')){
 			hash = word.charAt(0) - 'a';
 		}
@@ -43,21 +49,21 @@ public class MyHashTableOA{
 		}
 		int clusterSize = this.length/27;
 		hash = hash*clusterSize;
-		return hash;
+		return hash;*/
 	}
 
-	public int checkWord(String text){
+	public boolean checkWord(String text){
 		int hash = hashFunction(text);
 		for(int j = hash; j < this.length; j ++){
 			if(text.equals(this.m_array[j])){
-				return 1;
+				return true;
 			}
 		}
 		for(int j = 0; j < hash; j ++){
 			if(text.equals(this.m_array[j])){
-				return 1;
+				return true;
 			}
 		}
-		return 0;
+		return false;
 	}
 }
