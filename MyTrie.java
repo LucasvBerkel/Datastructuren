@@ -36,6 +36,9 @@ public class MyTrie{
 		}
 		char letter = s.charAt(0);
 		int index = getIndex(totalCharacters, letter);
+		if(index == -1){
+			return false;
+		}
 		if(this.children[index] == null){
 			return false;
 		}
@@ -48,6 +51,6 @@ public class MyTrie{
 				return i;
 			}
 		}
-		return 0;
+		return -1;
 	}
 }

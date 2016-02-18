@@ -4,20 +4,9 @@ import java.util.*;
 public class hashTableCCNewHash{
 
 	public static void main(String[] args){
-
 		MyHashMap m_map = new MyHashMap();
 		Writer("wordlist.txt", m_map);
 		fileResults(m_map);
-
-		// int foundCount = 0;
-		// long startTime = System.nanoTime();
-		// foundCount += Searcher("sample_8Lg2uNPd22[.txt", m_map);
-		// long endTime   = System.nanoTime();
-		// long totalTime = endTime - startTime;
-		// System.out.println(foundCount);
-		// System.out.println(totalTime);
-
-		while (!terminalCom(m_map));
 	}
 
 	public static void fileResults(MyHashMap m_map){
@@ -82,24 +71,5 @@ public class hashTableCCNewHash{
 		    e.printStackTrace();
 		}
 		return counter;
-	}
-
-	private static boolean terminalCom(MyHashMap map){
-		BufferedReader lineOfText = new BufferedReader(new InputStreamReader(System.in));
-		try {
-			String textLine = lineOfText.readLine();
-			if (textLine.equals("exit")){
-				return true;
-			}
-			if (map.Search(textLine)){
-				System.out.println("Word found!");
-			}
-			else {
-				System.out.println("Word not found..");
-			}
-		}
-		catch (IOException e) {
-		}	
-		return false;
 	}
 }

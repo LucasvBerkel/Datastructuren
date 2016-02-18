@@ -3,13 +3,13 @@ import java.util.*;
 
 public class MyHashMap{
 	final int INVALID = 0xFFFFFFFF;
-	MyCluster[] m_clusters;
+	MyArraylist[] m_arraylists;
 
 	public MyHashMap(){
-		m_clusters = new MyCluster[53];
+		m_arraylists = new MyArraylist[53];
 
-		for (int i = 0; i < m_clusters.length; i++){
-			m_clusters[i] = new MyCluster();
+		for (int i = 0; i < m_arraylists.length; i++){
+			m_arraylists[i] = new MyArraylist();
 		}
 	}
 
@@ -18,7 +18,7 @@ public class MyHashMap{
 		if (word != null){
 			int hash = GetHash(word);
 			if (hash != INVALID){
-				m_clusters[hash].Put(word);
+				m_arraylists[hash].Put(word);
 				return false;
 			}
 		}
@@ -28,7 +28,7 @@ public class MyHashMap{
 	public boolean Search(String word){
 		int hash = GetHash(word);
 		if (hash != INVALID){
-			return m_clusters[hash].Search(word);
+			return m_arraylists[hash].Search(word);
 		}
 		return false;
 	}
