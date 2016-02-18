@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class hashTableOA extends getChars{
+public class hashTableOA extends extraFunctions{
 
 	// Run the program.
 	public static void main(String[] args){

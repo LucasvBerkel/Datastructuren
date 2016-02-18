@@ -50,11 +50,6 @@ public class MyArraylist{
 			if(letter.charAt(0) == c){
 				return true;
 			}
-			// for(int j = i; j < m_array[i].length(); j++){
-			// 	if(m_array[i].charAt(j) == c){
-			// 		return true;
-			// 	}
-			// }
 		}
 		return false;
 	}

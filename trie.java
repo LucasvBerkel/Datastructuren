@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class trie extends getChars{
+public class trie extends extraFunctions{
 
 	public static void main(String[] args){
 		File file = new File("wordlist.txt");
@@ -55,7 +55,6 @@ public class trie extends getChars{
 		int counter[] = new int[2];
 		counter[0] = 0;
 		counter[1] = 0;
-		// File file = new File("Samples/"+fileName);
 		try {
 		    BufferedReader reader = new BufferedReader(new FileReader(file));
 		    while (true){

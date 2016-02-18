@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class hashTableCC{
+public class hashTableCC extends extraFunctions{
 
 	public static void main(String[] args){
 		MyHashTableCC m_table = new MyHashTableCC();
