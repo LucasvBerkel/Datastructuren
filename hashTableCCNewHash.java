@@ -5,7 +5,7 @@ public class hashTableCCNewHash{
 
 	public static void main(String[] args){
 		MyHashTable m_table = new MyHashTable();
-		Writer("wordlist.txt", m_table);
+		writer("wordlist.txt", m_table);
 		fileResults(m_table);
 	}
 
@@ -17,7 +17,7 @@ public class hashTableCCNewHash{
 		    for(File f : listDir){
 				out.println("Filename: " + f.getName());
 				long startTime = System.nanoTime();
-				int[] counter = Searcher(f.getName(), m_table);
+				int[] counter = searcher(f.getName(), m_table);
 				long endTime   = System.nanoTime();
 				long totalTime = endTime - startTime;
 				out.println("Correct samples/total: " + counter[0] + "/" + counter[1]);
@@ -30,7 +30,7 @@ public class hashTableCCNewHash{
 	    }
 	}
 
-	private static void Writer(String fileName, MyHashTable m_table){
+	private static void writer(String fileName, MyHashTable m_table){
 		File file = new File(fileName);
 		try {
 		    BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -39,7 +39,7 @@ public class hashTableCCNewHash{
 		   		if (line == null){
 		   			break;
 		   		}
-		    	m_table.Put(line); 	 
+		    	m_table.put(line); 	 
 		    }
 		    m_table.writeLength();
 		} catch (FileNotFoundException e) {
@@ -51,7 +51,7 @@ public class hashTableCCNewHash{
 
 	// ipv int class Results, aantal items, hoeveelheid foute items, hoeveelheid goede items
 	// toString functie toevoegen welke string teruggeeft van de results
-	private static int[] Searcher(String fileName, MyHashTable m_table){
+	private static int[] searcher(String fileName, MyHashTable m_table){
 		int counter[] = new int[2];
 		counter[0] = 0;
 		counter[1] = 0;
@@ -64,7 +64,7 @@ public class hashTableCCNewHash{
 		   			break;
 		   		}
 
-		    	counter[0] = m_table.Search(line) ? counter[0] + 1 : counter[0];	 // X ? A : B voert wanneer X true is A uit en wanneer X false is B. 
+		    	counter[0] = m_table.search(line) ? counter[0] + 1 : counter[0];	 // X ? A : B voert wanneer X true is A uit en wanneer X false is B. 
 		    	counter[1] += 1;
 		    }
 		} catch (FileNotFoundException e) {

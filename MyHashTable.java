@@ -13,22 +13,22 @@ public class MyHashTable{
 		}
 	}
 
-	public boolean Put(String word){
+	public boolean put(String word){
 
 		if (word != null){
-			int hash = GetHash(word);
+			int hash = getHash(word);
 			if (hash != INVALID){
-				m_arraylists[hash].Put(word);
+				m_arraylists[hash].put(word);
 				return false;
 			}
 		}
 		return true;
 	}
 
-	public boolean Search(String word){
-		int hash = GetHash(word);
+	public boolean search(String word){
+		int hash = getHash(word);
 		if (hash != INVALID){
-			return m_arraylists[hash].Search(word);
+			return m_arraylists[hash].search(word);
 		}
 		return false;
 	}
@@ -39,7 +39,7 @@ public class MyHashTable{
 		}
 	}
 
-	private int GetHash(String word){
+	private int getHash(String word){
 		if (word == null){
 			return INVALID;
 		}
