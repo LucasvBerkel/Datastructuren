@@ -1,0 +1,37 @@
+Filename: .DS_Store
+Correct samples/total: 0/1
+Nanoseconds: 525680
+
+Filename: sample_0OXg@T=T55.txt
+Correct samples/total: 9974/10000
+Nanoseconds: 664378158
+
+Filename: sample_10wsogiLdW=.txt
+Correct samples/total: 19727/20000
+Nanoseconds: 1275448412
+
+Filename: sample_15ONfIJ1D=g.txt
+Correct samples/total: 19676/20000
+Nanoseconds: 1294415741
+
+Filename: sample_18ywQoP^]I.txt
+Correct samples/total: 10000/10000
+Nanoseconds: 627997783
+
+Filename: sample_24rQ[WUNIhd.txt
+Correct samples/total: 29098/30000
+Nanoseconds: 1903728224
+
+Filename: sample_26Jdo5Z3d_0.txt
+Correct samples/total: 28943/30000
+Nanoseconds: 1903016905
+
+Filename: sample_3B2_2GC8[M.txt
+Correct samples/total: 9997/10000
+Nanoseconds: 624435385
+
+Filename: sample_4s^U6a1^06.txt
+Correct samples/total: 10000/10000
+Nanoseconds: 615799146
+
+Filename: sample_8Lg2uNPd22[.txt

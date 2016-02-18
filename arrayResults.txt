@@ -1,0 +1,9 @@
+Filename: .DS_Store
+Correct samples/total: 0/1
+Nanoseconds: 9825937
+
+Filename: sample_0OXg@T=T55.txt
+Correct samples/total: 9974/10000
+Nanoseconds: 16345743641
+
+Filename: sample_10wsogiLdW=.txt

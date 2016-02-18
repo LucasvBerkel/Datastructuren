@@ -45,4 +45,53 @@ public class getChars{
 		}
 		return array;
 	}
+
+	public static String[] makeArray(File file){
+		int size = getLineCount(file);
+		BufferedReader reader = null;
+		String[] sampleArray = new String[size];
+		try {
+		    reader = new BufferedReader(new FileReader(file));
+		    String line;
+		   	for(int i = 0; i < size; i++){
+		   		line = reader.readLine();
+		   		if (line == null){
+		   			break;
+		   		}
+		    	sampleArray[i] = line;
+		    }
+		    if (reader != null) {
+		       	reader.close();
+		    }
+		} catch (FileNotFoundException e) {
+		    e.printStackTrace();
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
+		return sampleArray;
+	}
+
+	public static int getLineCount(File file){
+		BufferedReader reader = null;
+		int counter = 0;
+		try {
+		    reader = new BufferedReader(new FileReader(file));
+		    String line;
+		    while (true){
+		   		line = reader.readLine();
+		   		if (line == null){
+		   			break;
+		   		}
+		    	counter++; 
+		    }
+		    if (reader != null) {
+		       	reader.close();
+		    }
+		} catch (FileNotFoundException e) {
+		    e.printStackTrace();
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
+		return counter;
+	}
 }
