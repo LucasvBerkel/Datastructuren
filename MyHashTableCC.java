@@ -1,18 +1,33 @@
+// Authors:
+// Lucas van Berkel, 10747958
+// Joël Meyer, 10003539
+
+
 import java.io.*;
 import java.util.*;
 
 public class MyHashTableCC{
 	final int INVALID = 0xFFFFFFFF;
+	final int DIFF_CHARACTERS = 53;
+	
 	MyArraylist[] m_arraylists;
 
+	// Constructor, the object contains one attribute.
+	// Attribute(s):
+	// - m_arraylists, array of MyArrayLists.
 	public MyHashTableCC(){
-		m_arraylists = new MyArraylist[53];
+		m_arraylists = new MyArraylist[DIFF_CHARACTERS];
 
 		for (int i = 0; i < m_arraylists.length; i++){
 			m_arraylists[i] = new MyArraylist();
 		}
 	}
 
+	// Adds the word at the proper location.
+	// Input(s):
+	// - word, word that has to be added.
+	// Output(s):
+	// - false if proper hash is made, word will be added at the proper location.
 	public boolean put(String word){
 
 		if (word != null){
@@ -25,6 +40,12 @@ public class MyHashTableCC{
 		return true;
 	}
 
+
+	// Search for the hashed word.
+	// Input(s):
+	// - word, hash of word is found, then searched for.
+	// Output(s):
+	// - true if word is found, false if not.
 	public boolean search(String word){
 		int hash = getHash(word);
 		if (hash != INVALID){
@@ -33,12 +54,18 @@ public class MyHashTableCC{
 		return false;
 	}
 
+	// Set a fixed size to arraylist.
 	public void writeLength(){
-		for(int i = 0; i < 53; i++){
+		for(int i = 0; i < DIFF_CHARACTERS; i++){
 			m_arraylists[i].length();
 		}
 	}
 
+	// Hashfunction.
+	// Input(s):
+	// - word, word that has to be hashed.
+	// Output(s):
+	// - hash, int that specifies at which array the word should be added.
 	private int getHash(String word){
 		if (word == null){
 			return INVALID;
