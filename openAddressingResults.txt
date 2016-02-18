@@ -1,1 +1,4 @@
 Filename: sample_0OXg@T=T55.txt
+Correct samples/total: 9974/10000
+Nanoseconds: 47861546418
+
