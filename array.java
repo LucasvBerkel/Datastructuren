@@ -1,17 +1,22 @@
+// Authors:
+// Lucas van Berkel, 10747958
+// Joël Meyer, 10003539
+
 import java.io.*;
 import java.util.*;
 
 public class array extends extraFunctions{
 
-	// Run the program.
 	public static void main(String[] args){
-		File file = new File("wordlist.txt");
-		MyArraylist wordList = writeToArrayList(file);
-		fileResults(wordList);
+		fileResults();
 	}
 
 	// Save results in .txt file. 
-	public static void fileResults(MyArraylist wordList){
+	// Output(s):
+	// - arrayResults.txt, text file with results.
+	public static void fileResults(){
+		File file = new File("wordlist.txt");
+		MyArraylist wordList = writeToArrayList(file);
 		File dir = new File("Samples/");
 		File listDir[] = dir.listFiles();
 		try {
@@ -33,6 +38,8 @@ public class array extends extraFunctions{
 	}
 
 	// Read file into array datastructure.
+	// Input(s): 
+	// - file, file that has to be converted into array datastructure.
 	public static MyArraylist writeToArrayList(File file){
 		BufferedReader reader = null;
 		MyArraylist datastructure = new MyArraylist();
@@ -57,6 +64,13 @@ public class array extends extraFunctions{
 		return datastructure;	
 	}
 
+	// Search for word in given file.
+	// Input(s):
+	// - file, sample file that has to be checked.
+	// - m_array, list of reference words.
+	// Output(s):
+	// - counter, number of occurences of words in sample file that are also in
+	// list of reference words .
 	public static int[] searchInArrayList(File file, MyArraylist m_array){
 		int counter[] = new int[2];
 		counter[0] = 0;

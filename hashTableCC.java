@@ -1,3 +1,7 @@
+// Authors:
+// Lucas van Berkel, 10747958
+// Joël Meyer, 10003539
+
 import java.io.*;
 import java.util.*;
 
@@ -9,6 +13,11 @@ public class hashTableCC extends extraFunctions{
 		fileResults(m_table);
 	}
 
+	// Save results in .txt file
+	// Input(s):
+	// - m_table, datastructure collision chaining
+	// Output(s):
+	// - collisionChainResults.txt, text file with results.
 	public static void fileResults(MyHashTableCC m_table){
 		File dir = new File("Samples/");
 		File listDir[] = dir.listFiles();
@@ -30,6 +39,10 @@ public class hashTableCC extends extraFunctions{
 	    }
 	}
 
+	// Reads the file and puts its content in the hashtable.  
+	// Input(s):
+	// - fileName, name of the reference words file.
+	// - m_table, the hash table that implements collision chaining.
 	private static void writeToHashTableCC(String fileName, MyHashTableCC m_table){
 		File file = new File(fileName);
 		try {
@@ -49,8 +62,10 @@ public class hashTableCC extends extraFunctions{
 		}
 	}
 
-	// ipv int class Results, aantal items, hoeveelheid foute items, hoeveelheid goede items
-	// toString functie toevoegen welke string teruggeeft van de results
+	// Search through hashtable.
+	// Input(s):
+	// - file, name of the sample words file.
+	// - m_table, the hash table that implements collision chaining.
 	private static int[] searchInHashTableCC(File file, MyHashTableCC m_table){
 		int counter[] = new int[2];
 		counter[0] = 0;
