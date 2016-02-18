@@ -1,15 +1,15 @@
 import java.io.*;
 import java.util.*;
 
-public class hashTableCCNewHash{
+public class hashTableCC{
 
 	public static void main(String[] args){
-		MyHashTable m_table = new MyHashTable();
+		MyHashTableCC m_table = new MyHashTableCC();
 		writeToHashTableCC("wordlist.txt", m_table);
 		fileResults(m_table);
 	}
 
-	public static void fileResults(MyHashTable m_table){
+	public static void fileResults(MyHashTableCC m_table){
 		File dir = new File("Samples/");
 		File listDir[] = dir.listFiles();
 		try {
@@ -30,7 +30,7 @@ public class hashTableCCNewHash{
 	    }
 	}
 
-	private static void writeToHashTableCC(String fileName, MyHashTable m_table){
+	private static void writeToHashTableCC(String fileName, MyHashTableCC m_table){
 		File file = new File(fileName);
 		try {
 		    BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -51,7 +51,7 @@ public class hashTableCCNewHash{
 
 	// ipv int class Results, aantal items, hoeveelheid foute items, hoeveelheid goede items
 	// toString functie toevoegen welke string teruggeeft van de results
-	private static int[] searchInHashTableCC(File file, MyHashTable m_table){
+	private static int[] searchInHashTableCC(File file, MyHashTableCC m_table){
 		int counter[] = new int[2];
 		counter[0] = 0;
 		counter[1] = 0;

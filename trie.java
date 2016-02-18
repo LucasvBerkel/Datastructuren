@@ -21,7 +21,7 @@ public class trie extends getChars{
 		    for(File f : listDir){
 				out.println("Filename: " + f.getName());
 				long startTime = System.nanoTime();
-				int[] counter = searchInTrie(f.getName(), trie);
+				int[] counter = searchInTrie(f, trie);
 				long endTime   = System.nanoTime();
 				long totalTime = endTime - startTime;
 				out.println("Correct samples/total: " + counter[0] + "/" + counter[1]);
@@ -51,11 +51,11 @@ public class trie extends getChars{
 		}
 	}
 
-	private static int[] searchInTrie(String fileName, MyTrie trie){
+	private static int[] searchInTrie(File file, MyTrie trie){
 		int counter[] = new int[2];
 		counter[0] = 0;
 		counter[1] = 0;
-		File file = new File("Samples/"+fileName);
+		// File file = new File("Samples/"+fileName);
 		try {
 		    BufferedReader reader = new BufferedReader(new FileReader(file));
 		    while (true){
