@@ -47,28 +47,10 @@ public class hashTableOA extends extraFunctions{
 	// Takes the temp-array and copies it more less to the HashTable, categorized using the hashfunction
 	// Input(s):
 	// - array, the temp-array containing the vocabulary
-	// - m_table, the HashTable constructed earlier
 	// Delivers no output(s):
 	public static void writeToHashTableOA(String[] array, MyHashTableOA m_table){
-		int hash = 0;
 		for(int j = 0; j < m_table.length; j++){
-			hash = m_table.hashFunction(array[j]);
-			boolean check = true;
-			for(int i = hash; i < m_table.length; i++){
-				if(m_table.m_array[i] == null){
-					m_table.m_array[i] = array[i];
-					check = false;
-					break;
-				}
-			}
-			if(check){
-				for(int i = 0; i < hash; i++){
-					if(m_table.m_array[i] == null){
-						m_table.m_array[i] = array[i];
-						break;
-					}
-				}
-			}
+			m_table.add(array[j]);
 		}
 	}
 
