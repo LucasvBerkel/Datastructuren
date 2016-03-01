@@ -1,22 +1,15 @@
 import java.lang.*;
 
 public class MyCitySearch{
-	public enum Key{
-		LATITUDE, 
-		LONGITUDE,
-		COUNTRY,
-		POPULATION,
-		ELEVATION
-	}
 
 	MyContainer m_container;
 
-	public MyCitySearch(MyCity[] database, Key key){
-		m_container = new MyContainer(-1, '0', database);
+	public MyCitySearch(MyCity[] database, enums.Key key){
+		m_container = new MyContainer(database);
+
 		int i = database.length;
 		while (i-- > 0){
 			MyCityLink link = new MyCityLink();
-			//System.out.println(i);
 
 			if (database[i] != null){
 				link.index = i;
@@ -45,19 +38,20 @@ public class MyCitySearch{
 				default: 
 					return;
 				}
-				m_container.put(link, 0); 
+
+				m_container.put(link, -1); 
 			}
 		}
 	}
 
-	public MyResults Search(String landCode){
+	public MyResults search(String landCode){
 		MyResults results = new MyResults();
-		results.put(m_container.search(landCode));
+		results.put(m_container.search(landCode, -1));
 
 		return results;
 	}
 
-	public MyResults Search(String minValue, String maxValue){
+	public MyResults search(String minValue, String maxValue){
 		minValue = minValue.replace(".", "");
 		maxValue = maxValue.replace(".", "");
 
@@ -67,7 +61,7 @@ public class MyCitySearch{
 		MyResults results = new MyResults();
 		int i = maxVal - minVal;
 		while (i-- > 0){
-			results.put(m_container.search(Integer.toString(i + minVal)));	
+			results.put(m_container.search(Integer.toString(i + minVal), -1));	
 		}
 		return results;
 	}

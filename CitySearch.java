@@ -8,47 +8,98 @@ public class CitySearch{
 	static final String csvFile = "cities1000Correct.csv";
 
 	static MyCity[] m_database;
-	static MyCitySearch m_search;
 
 	public static void main(String[] args){
 		int arraySize = getLineCount(csvFile);
 		writeToDatabase(csvFile, arraySize);
-		m_search = new MyCitySearch(m_database, MyCitySearch.Key.ELEVATION);
 
+		MyCitySearch searchCountry = new MyCitySearch(m_database, enums.Key.COUNTRY);
+		MyCitySearch searchLatitude = new MyCitySearch(m_database, enums.Key.LATITUDE);
 
-		/*Console objConsole = System.console();
-
+		Console objConsole = System.console();
         if (objConsole != null) {
 
-            System.out.print("Enter your full name : ");
+            System.out.println("\nEnter min and max Latitude, like this:");
+            System.out.println("12.122,13.782");
+            System.out.println("Or use a landcode, like this:");
+            System.out.println("NL\n");
             
             // reader method call.
             Scanner scanner = new Scanner(objConsole.reader());
             while (scanner.hasNext()) {
                 String str = scanner.next();
-                System.out.println(str);
+
+                // Exit
+                if (str.equals("exit"))
+                {
+                	scanner.close();
+                	break;
+                }
+
+                // Search
+                MyResults results;
+				long startTime;
+				long endTime;
+
+                // Landcode
+                if ((str.charAt(0) >= 'A') && (str.charAt(0) <= 'Z'))
+                {
+                	startTime = System.nanoTime();
+	                results = searchCountry.search(str);
+					endTime = System.nanoTime();
+
+	                results.print(m_database);
+                }
+
+                // Range
+                else
+                {
+	                String[] values = str.split(",");
+	                System.out.println(values[1]);
+
+	                startTime = System.nanoTime();
+	                results = searchLatitude.search(values[0], values[1]);	
+	                //results = searchLatitude.search("16.94253", "33.94253");
+	                endTime = System.nanoTime();
+
+	                results.print(m_database);
+                }
+
+				long totalTime = endTime - startTime;
+				System.out.println("\nNanoseconds: " + totalTime);
+
+	            System.out.println("\nEnter min and max Latitude, like this:");
+	            System.out.println("12.122,13.782");
+	            System.out.println("Or use a landcode, like this:");
+	            System.out.println("NL\n");
             }
         } else {
             throw new RuntimeException("Can't run w/out a console!");
-        }*/
+        }
 	}
 
+
+
+
+
+
+
 	private static void writeToDatabase(String fileName, int arraySize){
-		File file = new File(fileName);
-
 		m_database = new MyCity[arraySize];
-		BufferedReader br = null;
-		String line = "";
-		String csvSplitBy = ",";
 
+		File file = new File(fileName);
+		BufferedReader br = null;
+
+		String line;
 		int i = 0;
 		try {
 			br = new BufferedReader(new FileReader(csvFile));
 			br.readLine();
+
 			int counter = 1; 
 			while ((line = br.readLine()) != null) {
-				String[] values = line.split(csvSplitBy);
 				counter++;
+				String[] values = line.split(",");
 
 				MyCity city = new MyCity();
 				for (int j = 0; j < values.length; j++){
