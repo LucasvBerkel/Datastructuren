@@ -11,12 +11,12 @@ public class MyResults{
 	}
 
 	public void put(MyCityLink[] results){
-		/*m_cities[m_cityCount] = results;
+		m_cities[m_cityCount] = results;
 		m_cityCount++;
 
 		if (m_cityCount == m_cities.length){
 			resizeCities();
-		}*/
+		}
 	}
 
 
