@@ -1,4 +1,4 @@
-public class MyCity{
+public class MyCity extends extraFunctions{
 	public String name;
 	public String latitude;
 	public String longitude;
@@ -12,13 +12,14 @@ public class MyCity{
 	public int elevation_int;
 
 	public void put(String value, int index, int counter){		
-		value = value.replace(".", "");
 
 		switch (index) {
 		case 0:
 			name = value; 
 			break;
-		case 1: 
+		case 1:
+			value = extraFunctions.addZeros(value);
+			value = value.replace(".", "");
 			latitude = value;
 			try {
 				latitude_int = Integer.parseInt(value);
@@ -28,6 +29,8 @@ public class MyCity{
 			}
 			break;
 		case 2: 
+			value = extraFunctions.addZeros(value);
+			value = value.replace(".", "");		
 			longitude = value;
 			try {
 				longitude_int = Integer.parseInt(value);

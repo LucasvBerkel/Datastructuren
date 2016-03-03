@@ -32,6 +32,7 @@ public class MyResults{
 	public void print(MyCity[] database){
 
 		String output = "";
+		int counter = 0;
 
 		for (int i = 0; i < m_cityCount; i++){
 			if (m_cities[i] != null){
@@ -39,12 +40,14 @@ public class MyResults{
 				for (int j = 0; j < m_cities[i].length; j++){
 					if (m_cities[i][j] != null){
 						output += database[m_cities[i][j].index].name + "\n";
+						counter += 1;
 					}
 				}
 			}
 		}
 
 		System.out.print(output);
+		System.out.println("\n" + counter + " cities found matching the description");
 	}
 
 	private void resizeCities(){

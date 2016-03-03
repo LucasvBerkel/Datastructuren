@@ -1,6 +1,6 @@
 import java.lang.*;
 
-public class MyCitySearch{
+public class MyCitySearch extends extraFunctions{
 
 	MyContainer m_container;
 
@@ -52,6 +52,8 @@ public class MyCitySearch{
 	}
 
 	public MyResults search(String minValue, String maxValue){
+		minValue = extraFunctions.addZeros(minValue);
+		maxValue = extraFunctions.addZeros(maxValue);
 		minValue = minValue.replace(".", "");
 		maxValue = maxValue.replace(".", "");
 

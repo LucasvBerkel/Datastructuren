@@ -55,7 +55,6 @@ public class CitySearch{
                 else
                 {
 	                String[] values = str.split(",");
-	                System.out.println(values[1]);
 
 	                startTime = System.nanoTime();
 	                results = searchLatitude.search(values[0], values[1]);	
