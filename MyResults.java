@@ -30,7 +30,7 @@ public class MyResults{
 
 
 	public void print(MyCity[] database){
-
+		System.out.println("Concatenating results:...");
 		String output = "";
 		int counter = 0;
 
