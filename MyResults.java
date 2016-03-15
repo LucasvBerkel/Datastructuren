@@ -3,11 +3,13 @@ public class MyResults{
 
 	int m_cityCount;
 	MyCityLink[][] m_cities;
+	MySortedArray myArray;
 
 
 	public MyResults(){
 		m_cities = new MyCityLink[INITIALARRAYSIZE][];
 		m_cityCount = 0;
+		myArray = new MySortedArray();
 	}
 
 	public void put(MyCityLink[] results){
@@ -26,6 +28,19 @@ public class MyResults{
 
 	public MyResults and(MyResults results, enums.Key key){
 		return null;
+	}
+
+	public void addToArray(){
+		for (int i = 0; i < m_cityCount; i++){
+			if (m_cities[i] != null){
+				for (int j = 0; j < m_cities[i].length; j++){
+					if (m_cities[i][j] != null){
+						myArray.insert(m_cities[i][j].index);
+					}
+				}
+			}
+		}
+		myArray.sort();
 	}
 
 
