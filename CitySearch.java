@@ -19,9 +19,9 @@ public class CitySearch{
         if (objConsole != null) {
 
             System.out.println("\nEnter min and max Latitude, like this:");
-            System.out.println("12.122,13.782");
+            System.out.println("LA:12.213,22.242");
             System.out.println("Or use a landcode, like this:");
-            System.out.println("NL\n");
+            System.out.println("LC:NL\n");
             
             // reader method call.
             Scanner scanner = new Scanner(objConsole.reader());
@@ -35,11 +35,14 @@ public class CitySearch{
                 	break;
                 }
 
+                String[] query = str.split(":");
+
                 // Search
                 MyResults results;
-				long startTime;
-				long endTime;
+				long startTime = 0;
+				long endTime = 0;
 
+<<<<<<< HEAD
 				// check invoer
 				// verdeel invoer
 				// array van binary trees
@@ -55,27 +58,42 @@ public class CitySearch{
 
 	                results.print();
                 }
+=======
+				switch(query[0]){
+					case "LC":
+	                	startTime = System.nanoTime();
+		                results = searchCountry.search(query[1]);
+						endTime = System.nanoTime();
 
-                // Range
-                else
-                {
-	                String[] values = str.split(",");
+						results.addToArray();
+		        		results.myArray.print(m_database);
+		        		break;
+>>>>>>> 270b8dd60f58469bcf7b6b8688025e560c30c5b4
 
-	                startTime = System.nanoTime();
-	                results = searchLatitude.search(values[0], values[1]);	
-	                //results = searchLatitude.search("16.94253", "33.94253");
-	                endTime = System.nanoTime();
+		            case "LA":
+		                String[] values = query[1].split(",");
 
+		                startTime = System.nanoTime();
+		                results = searchLatitude.search(values[0], values[1]);	
+		                endTime = System.nanoTime();
+
+<<<<<<< HEAD
 	                results.print();
                 }
+=======
+		                results.addToArray();
+		       			results.myArray.print(m_database);
+		       			break;
+	            }
+>>>>>>> 270b8dd60f58469bcf7b6b8688025e560c30c5b4
 
 				long totalTime = endTime - startTime;
 				System.out.println("\nNanoseconds: " + totalTime);
 
 	            System.out.println("\nEnter min and max Latitude, like this:");
-	            System.out.println("12.122,13.782");
+	            System.out.println("LA:12.213,22.242");
 	            System.out.println("Or use a landcode, like this:");
-	            System.out.println("NL\n");
+	            System.out.println("LC:NL\n");
             }
         } else {
             throw new RuntimeException("Can't run w/out a console!");

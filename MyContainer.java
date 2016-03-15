@@ -37,6 +37,10 @@ public class MyContainer{
 			}
 		} 
 		else {
+			// System.out.println("\n Ping \n");
+			// try{
+			// 	System.out.println(m_cities[0].index);
+			// } catch (NullPointerException e){ }	
 			return m_cities;
 		}
 

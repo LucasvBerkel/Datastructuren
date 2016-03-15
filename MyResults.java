@@ -3,7 +3,11 @@ public class MyResults{
 
 	int m_cityCount;
 	MyCityLink[][] m_cities;
+<<<<<<< HEAD
 	MyCity[] m_database;
+=======
+	MySortedArray myArray;
+>>>>>>> 270b8dd60f58469bcf7b6b8688025e560c30c5b4
 
 	String[][] m_table;
 
@@ -11,7 +15,11 @@ public class MyResults{
 	public MyResults(MyCity[] database){
 		m_cities = new MyCityLink[INITIALARRAYSIZE][];
 		m_cityCount = 0;
+<<<<<<< HEAD
 		m_database = database;
+=======
+		myArray = new MySortedArray();
+>>>>>>> 270b8dd60f58469bcf7b6b8688025e560c30c5b4
 	}
 
 	public void put(MyCityLink[] results){
@@ -32,6 +40,7 @@ public class MyResults{
 		return null;
 	}
 
+<<<<<<< HEAD
 	// werkt samen met resize etc. dus nakijken. 
 	public String[][] table(){
 		m_table = new String[800][1];
@@ -47,10 +56,19 @@ public class MyResults{
 						row[0] = m_database[m_cities[i][j].index].name;
 						AddRow(counter, row);
 						counter += 1;
+=======
+	public void addToArray(){
+		for (int i = 0; i < m_cityCount; i++){
+			if (m_cities[i] != null){
+				for (int j = 0; j < m_cities[i].length; j++){
+					if (m_cities[i][j] != null){
+						myArray.insert(m_cities[i][j].index);
+>>>>>>> 270b8dd60f58469bcf7b6b8688025e560c30c5b4
 					}
 				}
 			}
 		}
+<<<<<<< HEAD
 		
 		return m_table;		
 	}
@@ -67,6 +85,11 @@ public class MyResults{
 			m_table[index][i] = row[i];
 		}
 	}
+=======
+		myArray.sort();
+	}
+
+>>>>>>> 270b8dd60f58469bcf7b6b8688025e560c30c5b4
 
 	public void print(){
 		System.out.println("Concatenating results:...");
