@@ -6,7 +6,6 @@ import java.lang.*;
 public class CitySearch{
 
 	static final String csvFile = "cities1000Correct.csv";
-
 	static MyCity[] m_database;
 
 	public static void main(String[] args){
@@ -41,6 +40,12 @@ public class CitySearch{
 				long startTime;
 				long endTime;
 
+				// check invoer
+				// verdeel invoer
+				// array van binary trees
+				// combineer die trees
+				// print resulting tree
+
                 // Landcode
                 if ((str.charAt(0) >= 'A') && (str.charAt(0) <= 'Z'))
                 {
@@ -48,7 +53,7 @@ public class CitySearch{
 	                results = searchCountry.search(str);
 					endTime = System.nanoTime();
 
-	                results.print(m_database);
+	                results.print();
                 }
 
                 // Range
@@ -61,7 +66,7 @@ public class CitySearch{
 	                //results = searchLatitude.search("16.94253", "33.94253");
 	                endTime = System.nanoTime();
 
-	                results.print(m_database);
+	                results.print();
                 }
 
 				long totalTime = endTime - startTime;
@@ -76,12 +81,6 @@ public class CitySearch{
             throw new RuntimeException("Can't run w/out a console!");
         }
 	}
-
-
-
-
-
-
 
 	private static void writeToDatabase(String fileName, int arraySize){
 		m_database = new MyCity[arraySize];
