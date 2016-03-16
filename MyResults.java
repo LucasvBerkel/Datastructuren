@@ -34,22 +34,6 @@ public class MyResults{
 		return null;
 	}
 
-	// werkt samen met resize etc. dus nakijken. 
-	public String[][] table(){
-		m_table = new String[800][1];
-		int counter = 0;
-
-		for (int i = 0; i < m_cityCount; i++){
-			if (m_cities[i] != null){
-
-				for (int j = 0; j < m_cities[i].length; j++){
-					if (m_cities[i][j] != null){
-
-						String[] row = new String[1];
-						row[0] = m_database[m_cities[i][j].index].name;
-						AddRow(counter, row);
-						counter += 1;
-
 	public void addToArray(){
 		for (int i = 0; i < m_cityCount; i++){
 			if (m_cities[i] != null){
@@ -60,23 +44,7 @@ public class MyResults{
 				}
 			}
 		}
-		
-		return m_table;		
-	}
-
-	public void AddRow(int index, String[] row){
-
-		if (index >= m_table.length){
-			resizeTable();
-		}
-
-		//m_table[index] = new String[row.length];
-		for (int i = 0; i < row.length; i++)
-		{
-			m_table[index][i] = row[i];
-		}
-	}
-		myArray.sort();
+		myArray.sort();	
 	}
 
 	public void print(){

@@ -46,14 +46,19 @@ public class CitySearch{
 				long startTime = 0;
 				long endTime = 0;
 
-				String[] queries = str.split(" ");
+				String[] splittedString = str.split(" ");
+				String[] queries = abstractParts(splittedString, 0);
+				String[] conjuctions = abstractParts(splittedString, 1);
 
-				MySortedArray results = performQuery(searchers, queries[0]);
-				if(results == null){
-					continue;
-				} else {
-					results.print(m_database);
+				MySortedArray[] results = new MySortedArray[queries.length];
+				for(int i = 0; i< results.length; i++){
+					results[i] = performQuery(searchers, queries[i]);
 				}
+				if(results.length != 1){
+					MySortedArray endResults = combine(results, conjuctions);
+				}
+
+				results[results.length-1].print(m_database);
 
 				long totalTime = endTime - startTime;
 				System.out.println("\nNanoseconds: " + totalTime);
@@ -62,6 +67,38 @@ public class CitySearch{
         } else {
             throw new RuntimeException("Can't run w/out a console!");
         }
+	}
+
+	private static MySortedArray combine(MySortedArray[] results, String[] conjuctions){
+		for(int i = 0; i < conjuctions.length; i++){
+			if(conjuctions[i].equals("AND")){
+				results[i+1] = and(results[i], results[i+1]);
+			} else {
+				results[i+1] = or(results[i], results[i+1]);
+			}
+		}
+		return results[results.length-1];
+	}
+
+	private static MySortedArray and(MySortedArray array1, MySortedArray array2){
+		MySortedArray resultArray = new MySortedArray();
+		for(int i = 0; i < array1.m_array.length; i++){
+			if(array2.search(array1.m_array[i])){
+				resultArray.insert(array1.m_array[i]);
+			}
+		}
+		resultArray.sort();
+		return resultArray;
+	}
+
+	private static MySortedArray or(MySortedArray array1, MySortedArray array2){
+		for(int i = 0; i < array1.m_array.length; i++){
+			if(!array2.search(array1.m_array[i])){
+				array2.insert(array1.m_array[i]);
+			}
+		}
+		array2.sort();
+		return array2;
 	}
 
 	public static MySortedArray performQuery(MyCitySearch[] searchers, String query){
@@ -101,6 +138,17 @@ public class CitySearch{
 	    System.out.println("LA:12.213,22.242");
 	   	System.out.println("Or use a landcode, like this:");
 	    System.out.println("LC:NL\n");
+	}
+
+	private static String[] abstractParts(String[] splittedString, int begin){
+		int length = splittedString.length-(splittedString.length/2)-begin;
+		String[] subParts = new String[length];
+
+		for(int i = 0; i<subParts.length; i++){
+			subParts[i] = splittedString[begin];
+			begin += 2;
+		} 
+		return subParts;
 	}
 
 	private static void writeToDatabase(String fileName, int arraySize){
