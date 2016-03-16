@@ -51,11 +51,13 @@ public class MyCitySearch extends extraFunctions{
 		return results;
 	}
 
-	public MyResults search(String minValue, String maxValue){
-		minValue = extraFunctions.addZeros(minValue);
-		maxValue = extraFunctions.addZeros(maxValue);
-		minValue = minValue.replace(".", "");
-		maxValue = maxValue.replace(".", "");
+	public MyResults search(String minValue, String maxValue, String query){
+		if(query.equals("LA") || query.equals("LO")){
+			minValue = extraFunctions.addZeros(minValue);
+			maxValue = extraFunctions.addZeros(maxValue);
+			minValue = minValue.replace(".", "");
+			maxValue = maxValue.replace(".", "");
+		}
 
 		int minVal = Integer.parseInt(minValue);
 		int maxVal = Integer.parseInt(maxValue);

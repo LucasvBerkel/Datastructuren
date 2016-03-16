@@ -13,21 +13,29 @@ public class CitySearch{
 		int arraySize = getLineCount(csvFile);
 		writeToDatabase(csvFile, arraySize);
 
-		MyCitySearch searchCountry = new MyCitySearch(m_database, enums.Key.COUNTRY);
 		MyCitySearch searchLatitude = new MyCitySearch(m_database, enums.Key.LATITUDE);
+		MyCitySearch searchLongitude = new MyCitySearch(m_database, enums.Key.LONGITUDE);
+		MyCitySearch searchCountry = new MyCitySearch(m_database, enums.Key.COUNTRY);
+		MyCitySearch searchPopulation = new MyCitySearch(m_database, enums.Key.POPULATION);
+		MyCitySearch searchElevation = new MyCitySearch(m_database, enums.Key.ELEVATION);
+
+		MyCitySearch[] searchers = new MyCitySearch[5];
+		searchers[0] = searchLatitude;
+		searchers[1] = searchLongitude;
+		searchers[2] = searchCountry;
+		searchers[3] = searchPopulation;
+		searchers[4] = searchElevation;
 
 		Console objConsole = System.console();
         if (objConsole != null) {
 
-            System.out.println("\nEnter min and max Latitude, like this:");
-            System.out.println("LA:12.213,22.242");
-            System.out.println("Or use a landcode, like this:");
-            System.out.println("LC:NL\n");
+        	printMessage();
             
             // reader method call.
             Scanner scanner = new Scanner(objConsole.reader());
             while (scanner.hasNext()) {
-                String str = scanner.next();
+
+                String str = scanner.nextLine();
 
                 // Exit
                 if (str.equals("exit"))
@@ -35,51 +43,66 @@ public class CitySearch{
                 	scanner.close();
                 	break;
                 }
-
-                String[] query = str.split(":");
-
                 // Search
-                MyResults results;
 				long startTime = 0;
 				long endTime = 0;
 
-				switch(query[0]){
-					case "LC":
-	                	startTime = System.nanoTime();
-		                results = searchCountry.search(query[1]);
-						endTime = System.nanoTime();
+				String[] queries = str.split(" ");
 
-						results.addToArray();
-		        		results.myArray.print(m_database);
-		        		break;
-
-		            case "LA":
-		                String[] values = query[1].split(",");
-
-		                startTime = System.nanoTime();
-		                results = searchLatitude.search(values[0], values[1]);	
-		                endTime = System.nanoTime();
-
-		                results.addToArray();
-		       			results.myArray.print(m_database);
-		       			break;
-	            }
+				MySortedArray results = performQuery(searchers, queries[0]);
+				if(results == null){
+					continue;
+				} else {
+					results.print(m_database);
+				}
 
 				long totalTime = endTime - startTime;
 				System.out.println("\nNanoseconds: " + totalTime);
-
-	            System.out.println("\nEnter min and max Latitude, like this:");
-	            System.out.println("LA:12.213,22.242");
-	            System.out.println("Or use a landcode, like this:");
-	            System.out.println("LC:NL\n");
+				printMessage();
             }
         } else {
             throw new RuntimeException("Can't run w/out a console!");
         }
 	}
 
+	public static MySortedArray performQuery(MyCitySearch[] searchers, String query){
+		MyResults results;
+        String[] subQuery = query.split(":");
+        MyCitySearch searcher;
+        boolean check = true;
 
+		switch(subQuery[0]){
+			case "LA":	searcher = searchers[0];
+     					break;
+			case "LO":	searcher = searchers[1];
+						break;
+			case "LC": 	searcher = searchers[2];
+						check = false;
+						break;
+			case "PO":	searcher = searchers[3];
+						break;
+			case "EL":	searcher = searchers[4];
+						break;
+			default:	System.out.println("Wrong query given.");
+						printMessage();
+						return null;
+        }
+        if (check){
+          	String[] values = subQuery[1].split(",");
+	        results = searcher.search(values[0], values[1], subQuery[0]);	
+	    } else {
+	        results = searcher.search(subQuery[1]);
+	    }
+		results.addToArray();
+	    return results.myArray;
+	}
 
+	private static void printMessage(){
+		System.out.println("\nEnter min and max Latitude, like this:");
+	    System.out.println("LA:12.213,22.242");
+	   	System.out.println("Or use a landcode, like this:");
+	    System.out.println("LC:NL\n");
+	}
 
 
 
