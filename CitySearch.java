@@ -128,7 +128,7 @@ public class CitySearch{
 						break;
 			case "EL":	searcher = searchers[4];
 						break;
-			default:	System.out.println("Wrong query given.");
+			default:	System.out.println("Wrong query given.\n");
 						printMessage();
 						return null;
         }
