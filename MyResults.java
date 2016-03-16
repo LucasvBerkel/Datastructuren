@@ -25,14 +25,6 @@ public class MyResults{
 		}
 	}
 
-	public MyResults or(MyResults results, enums.Key key){
-		return null;
-	}
-
-	public MyResults and(MyResults results, enums.Key key){
-		return null;
-	}
-
 	public void addToArray(){
 		for (int i = 0; i < m_cityCount; i++){
 			if (m_cities[i] != null){
