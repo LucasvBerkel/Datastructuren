@@ -25,7 +25,6 @@ public class MyResults{
 		}
 	}
 
-
 	public MyResults or(MyResults results, enums.Key key){
 		return null;
 	}
@@ -67,30 +66,6 @@ public class MyResults{
 		System.out.print(output);
 		System.out.println("\n" + counter + " cities found matching the description");
 	}
-
-	// gaat niet goed.
-	private void resizeTable(){
-		String[][] buffer = new String[m_cities.length][];
-		copyTable(m_table, buffer, m_table.length);
-
-		m_table = new String[m_table.length*2][];
-		copyTable(buffer, m_table, buffer.length);
-	}
-
-
-	private void copyTable(String[][] src, String[][] dst, int length){
-		for (int i = 0; i < length; i++){
-			if (src[i] != null){
-				dst[i] = new String[src[i].length];
-
-				for (int j = 0; j < src[i].length; j++){
-					if (src[i][j] != null){
-						dst[i][j] = src[i][j];
-					}
-				}
-			}
-		}
-	}	
 
 	private void resizeCities(){
 		MyCityLink[][] buffer = new MyCityLink[m_cities.length][];
