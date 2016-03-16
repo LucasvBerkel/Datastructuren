@@ -3,12 +3,16 @@ public class MyResults{
 
 	int m_cityCount;
 	MyCityLink[][] m_cities;
+	MyCity[] m_database;
 	MySortedArray myArray;
 
+	String[][] m_table;
 
-	public MyResults(){
+
+	public MyResults(MyCity[] database){
 		m_cities = new MyCityLink[INITIALARRAYSIZE][];
 		m_cityCount = 0;
+		m_database = database;
 		myArray = new MySortedArray();
 	}
 
@@ -30,6 +34,22 @@ public class MyResults{
 		return null;
 	}
 
+	// werkt samen met resize etc. dus nakijken. 
+	public String[][] table(){
+		m_table = new String[800][1];
+		int counter = 0;
+
+		for (int i = 0; i < m_cityCount; i++){
+			if (m_cities[i] != null){
+
+				for (int j = 0; j < m_cities[i].length; j++){
+					if (m_cities[i][j] != null){
+
+						String[] row = new String[1];
+						row[0] = m_database[m_cities[i][j].index].name;
+						AddRow(counter, row);
+						counter += 1;
+
 	public void addToArray(){
 		for (int i = 0; i < m_cityCount; i++){
 			if (m_cities[i] != null){
@@ -40,11 +60,26 @@ public class MyResults{
 				}
 			}
 		}
+		
+		return m_table;		
+	}
+
+	public void AddRow(int index, String[] row){
+
+		if (index >= m_table.length){
+			resizeTable();
+		}
+
+		//m_table[index] = new String[row.length];
+		for (int i = 0; i < row.length; i++)
+		{
+			m_table[index][i] = row[i];
+		}
+	}
 		myArray.sort();
 	}
 
-
-	public void print(MyCity[] database){
+	public void print(){
 		System.out.println("Concatenating results:...");
 		String output = "";
 		int counter = 0;
@@ -54,7 +89,7 @@ public class MyResults{
 
 				for (int j = 0; j < m_cities[i].length; j++){
 					if (m_cities[i][j] != null){
-						output += database[m_cities[i][j].index].name + "\n";
+						output += m_database[m_cities[i][j].index].name + "\n";
 						counter += 1;
 					}
 				}
@@ -64,6 +99,30 @@ public class MyResults{
 		System.out.print(output);
 		System.out.println("\n" + counter + " cities found matching the description");
 	}
+
+	// gaat niet goed.
+	private void resizeTable(){
+		String[][] buffer = new String[m_cities.length][];
+		copyTable(m_table, buffer, m_table.length);
+
+		m_table = new String[m_table.length*2][];
+		copyTable(buffer, m_table, buffer.length);
+	}
+
+
+	private void copyTable(String[][] src, String[][] dst, int length){
+		for (int i = 0; i < length; i++){
+			if (src[i] != null){
+				dst[i] = new String[src[i].length];
+
+				for (int j = 0; j < src[i].length; j++){
+					if (src[i][j] != null){
+						dst[i][j] = src[i][j];
+					}
+				}
+			}
+		}
+	}	
 
 	private void resizeCities(){
 		MyCityLink[][] buffer = new MyCityLink[m_cities.length][];

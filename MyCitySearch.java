@@ -3,9 +3,11 @@ import java.lang.*;
 public class MyCitySearch extends extraFunctions{
 
 	MyContainer m_container;
+	MyCity[] m_database;
 
 	public MyCitySearch(MyCity[] database, enums.Key key){
 		m_container = new MyContainer(database);
+		m_database = database;
 
 		int i = database.length;
 		while (i-- > 0){
@@ -45,7 +47,7 @@ public class MyCitySearch extends extraFunctions{
 	}
 
 	public MyResults search(String landCode){
-		MyResults results = new MyResults();
+		MyResults results = new MyResults(m_database);
 		results.put(m_container.search(landCode, -1));
 
 		return results;
@@ -62,7 +64,7 @@ public class MyCitySearch extends extraFunctions{
 		int minVal = Integer.parseInt(minValue);
 		int maxVal = Integer.parseInt(maxValue);
 
-		MyResults results = new MyResults();
+		MyResults results = new MyResults(m_database);
 		int i = maxVal - minVal;
 		while (i-- > 0){
 			results.put(m_container.search(Integer.toString(i + minVal), -1));	

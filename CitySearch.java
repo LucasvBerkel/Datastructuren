@@ -6,7 +6,6 @@ import java.lang.*;
 public class CitySearch{
 
 	static final String csvFile = "cities1000Correct.csv";
-
 	static MyCity[] m_database;
 
 	public static void main(String[] args){
@@ -103,9 +102,6 @@ public class CitySearch{
 	   	System.out.println("Or use a landcode, like this:");
 	    System.out.println("LC:NL\n");
 	}
-
-
-
 
 	private static void writeToDatabase(String fileName, int arraySize){
 		m_database = new MyCity[arraySize];
