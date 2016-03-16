@@ -3,7 +3,7 @@ import java.io.*;
 import java.util.*;
 import java.lang.*;
 
-public class CitySearch{
+public class CitySearch extends extraFunctions{
 
 	static final String csvFile = "cities1000Correct.csv";
 	static MyCity[] m_database;
@@ -46,6 +46,11 @@ public class CitySearch{
                 // Search
 				long startTime = 0;
 				long endTime = 0;
+
+				if(!extraFunctions.checkInput(str)){
+					printMessage();
+					continue;
+				}
 
 				String[] splittedString = str.split(" ");
 				String[] queries = abstractParts(splittedString, 0);
