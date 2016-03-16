@@ -28,7 +28,11 @@ public class MySortedArray{
 	}
 
 	public boolean search(int value){
+		if(value < m_array[0] || value > m_array[currentIndex-1]){
+			return false;
+		} else {
 		return search(value, 0, currentIndex-1);
+		}
 	}
 
 	private boolean search(int value, int begin, int end){
@@ -38,7 +42,7 @@ public class MySortedArray{
 		} else if (begin == end){
 			return false;
 		} else if (m_array[temp] > value){
-			return search(value, begin, temp-1);
+			return search(value, begin, temp);
 		} else {
 			return search(value, temp+1, end);
 		}

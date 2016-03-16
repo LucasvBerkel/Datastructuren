@@ -35,6 +35,7 @@ public class CitySearch{
             while (scanner.hasNext()) {
 
                 String str = scanner.nextLine();
+                System.out.println("");
 
                 // Exit
                 if (str.equals("exit"))
@@ -50,6 +51,8 @@ public class CitySearch{
 				String[] queries = abstractParts(splittedString, 0);
 				String[] conjuctions = abstractParts(splittedString, 1);
 
+				startTime = System.nanoTime();
+
 				MySortedArray[] results = new MySortedArray[queries.length];
 				for(int i = 0; i< results.length; i++){
 					results[i] = performQuery(searchers, queries[i]);
@@ -57,6 +60,8 @@ public class CitySearch{
 				if(results.length != 1){
 					MySortedArray endResults = combine(results, conjuctions);
 				}
+
+				endTime = System.nanoTime();
 
 				results[results.length-1].print(m_database);
 
@@ -92,13 +97,17 @@ public class CitySearch{
 	}
 
 	private static MySortedArray or(MySortedArray array1, MySortedArray array2){
+		MySortedArray resultArray = new MySortedArray();
+		for(int i = 0; i < array2.m_array.length; i++){
+			resultArray.insert(array2.m_array[i]);
+		}
 		for(int i = 0; i < array1.m_array.length; i++){
 			if(!array2.search(array1.m_array[i])){
-				array2.insert(array1.m_array[i]);
+				resultArray.insert(array1.m_array[i]);
 			}
 		}
-		array2.sort();
-		return array2;
+		resultArray.sort();
+		return resultArray;
 	}
 
 	public static MySortedArray performQuery(MyCitySearch[] searchers, String query){
@@ -134,10 +143,12 @@ public class CitySearch{
 	}
 
 	private static void printMessage(){
-		System.out.println("\nEnter min and max Latitude, like this:");
+		System.out.println("\nEnter min and max Latitude(LA)/Longitude(LO)/Population(PO)/Elevation(EL), like this:");
 	    System.out.println("LA:12.213,22.242");
-	   	System.out.println("Or use a landcode, like this:");
+	   	System.out.println("Or use a Landcode(LC), like this:");
 	    System.out.println("LC:NL\n");
+	    System.out.println("You can combine queries by the conjuctions AND and OR, like this:");
+	    System.out.println("EL:3,10 AND LC:DE\n");
 	}
 
 	private static String[] abstractParts(String[] splittedString, int begin){

@@ -1,2 +1,0 @@
-# Datastructuren
-Hoi
