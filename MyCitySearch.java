@@ -1,5 +1,3 @@
-import java.lang.*;
-
 public class MyCitySearch extends extraFunctions{
 
 	MyContainer m_container;

@@ -1,7 +1,11 @@
-/*City Search*/
-import java.io.*;
-import java.util.*;
-import java.lang.*;
+import java.io.BufferedReader;
+import java.io.Console;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.lang.Object;
+import java.util.Scanner;
 
 public class CitySearch extends extraFunctions{
 
