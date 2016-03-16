@@ -119,7 +119,7 @@ public class CitySearch extends extraFunctions{
 		return resultArray;
 	}
 
-	public static MySortedArray performQuery(MyCitySearch[] searchers, String query){
+	private static MySortedArray performQuery(MyCitySearch[] searchers, String query){
 		MyResults results;
         String[] subQuery = query.split(":");
         MyCitySearch searcher;
@@ -209,7 +209,7 @@ public class CitySearch extends extraFunctions{
 		}
   	}
 
-  	public static int getLineCount(String fileName){
+  	private static int getLineCount(String fileName){
   		File file = new File(fileName);
 
 		BufferedReader reader = null;

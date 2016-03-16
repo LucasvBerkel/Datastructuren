@@ -23,7 +23,7 @@ public class extraFunctions{
 			System.out.println("Inproper amount of queries");
 			return false;
 		}
-		String regex1 = "^(LA|LO|PO|EL):\\d*\\.?\\d*,\\d*\\.?\\d*$|^LC:\\w{2}$";
+		String regex1 = "^(LA|LO|PO|EL):-?\\d*\\.?\\d*,-?\\d*\\.?\\d*$|^LC:\\w{2}$";
 		String regex2 = "^AND$|^OR$";
 		for(int i = 0; i < parts.length; i+=2){
 			if(!parts[i].matches(regex1)){
