@@ -1,4 +1,4 @@
-public class MyCity extends extraFunctions{
+public class MyCity extends ExtraFunctions{
 	public String name;
 	public String latitude;
 	public String longitude;
@@ -6,10 +6,10 @@ public class MyCity extends extraFunctions{
 	public String population;
 	public String elevation;
 
-	public int latitude_int;
-	public int longitude_int;
-	public int population_int;
-	public int elevation_int;
+	public int latitudeInt;
+	public int longitudeInt;
+	public int populationInt;
+	public int elevationInt;
 
 	public void put(String value, int index, int counter){		
 
@@ -18,22 +18,22 @@ public class MyCity extends extraFunctions{
 			name = value; 
 			break;
 		case 1:
-			value = extraFunctions.addZeros(value);
+			value = ExtraFunctions.addZeros(value);
 			value = value.replace(".", "");
 			latitude = value;
 			try {
-				latitude_int = Integer.parseInt(value);
+				latitudeInt = Integer.parseInt(value);
 			} catch (NumberFormatException e) {
 				System.out.println(value);
 				System.out.println(counter);
 			}
 			break;
 		case 2: 
-			value = extraFunctions.addZeros(value);
+			value = ExtraFunctions.addZeros(value);
 			value = value.replace(".", "");		
 			longitude = value;
 			try {
-				longitude_int = Integer.parseInt(value);
+				longitudeInt = Integer.parseInt(value);
 			} catch (NumberFormatException e) {
 				System.out.println(value);
 				System.out.println(counter);
@@ -45,7 +45,7 @@ public class MyCity extends extraFunctions{
 		case 4: 
 			population = value;
 			try {
-				population_int = Integer.parseInt(value);
+				populationInt = Integer.parseInt(value);
 			} catch (NumberFormatException e) {
 				System.out.println(value);
 				System.out.println(counter);
@@ -54,7 +54,7 @@ public class MyCity extends extraFunctions{
 		case 5: 
 			elevation = value;
 			try {
-				elevation_int = Integer.parseInt(value);
+				elevationInt = Integer.parseInt(value);
 			} catch (NumberFormatException e) {
 				System.out.println(value);
 				System.out.println(counter);

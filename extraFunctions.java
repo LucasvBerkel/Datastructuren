@@ -1,7 +1,15 @@
-public class extraFunctions{
+public class ExtraFunctions{
 
 	final static int NUMBEROFZEROS = 6;
 
+	/*
+	Functions takes the values and add zeros after point, in order to make values with six figures after the point
+	equal to values with zero figures after the point
+	Input(s):
+	- number, a string containing an uncertain amount of zeros after the point
+	Output(s):
+	- newNumber, a string containing a certain amount of zeros after the point
+	*/
 	public static String addZeros(String number){
 		String[] values = number.split("\\.");
 		String decimals;
@@ -17,6 +25,13 @@ public class extraFunctions{
 		return newNumber;
 	}
 
+	/*
+	Takes the entire input String and checks if the given query is a valid one
+	Input(s):
+	- input, the entire input String
+	Output(s):
+	- boolean, false if input is wrong, true if input is valid
+	*/
 	public static boolean checkInput(String input){
 		String[] parts = input.split(" ");
 		if(parts.length % 2 == 0){

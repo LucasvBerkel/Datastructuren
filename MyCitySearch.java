@@ -1,11 +1,9 @@
-public class MyCitySearch extends extraFunctions{
+public class MyCitySearch extends ExtraFunctions{
 
-	MyContainer m_container;
-	MyCity[] m_database;
+	MyContainer myContainer;
 
 	public MyCitySearch(MyCity[] database, enums.Key key){
-		m_container = new MyContainer(database);
-		m_database = database;
+		myContainer = new MyContainer(database);
 
 		int i = database.length;
 		while (i-- > 0){
@@ -17,44 +15,44 @@ public class MyCitySearch extends extraFunctions{
 				switch (key){
 
 				case LATITUDE: 
-					link.value_int = database[i].latitude_int;
-					link.value_string = database[i].latitude;
+					link.valueInt = database[i].latitudeInt;
+					link.valueString = database[i].latitude;
 					break;
 				case LONGITUDE: 
-					link.value_int = database[i].longitude_int;
-					link.value_string = database[i].longitude;
+					link.valueInt = database[i].longitudeInt;
+					link.valueString = database[i].longitude;
 					break;
 				case COUNTRY: 
-					link.value_string = database[i].country;
+					link.valueString = database[i].country;
 					break;
 				case POPULATION: 
-					link.value_int = database[i].population_int;
-					link.value_string = database[i].population;
+					link.valueInt = database[i].populationInt;
+					link.valueString = database[i].population;
 					break;
 				case ELEVATION: 
-					link.value_int = database[i].elevation_int;
-					link.value_string = database[i].elevation;
+					link.valueInt = database[i].elevationInt;
+					link.valueString = database[i].elevation;
 					break;
 				default: 
 					return;
 				}
 
-				m_container.put(link, -1); 
+				myContainer.put(link, -1); 
 			}
 		}
 	}
 
 	public MyResults search(String landCode){
-		MyResults results = new MyResults(m_database);
-		results.put(m_container.search(landCode, -1));
+		MyResults results = new MyResults();
+		results.put(myContainer.search(landCode, -1));
 
 		return results;
 	}
 
 	public MyResults search(String minValue, String maxValue, String query){
 		if(query.equals("LA") || query.equals("LO")){
-			minValue = extraFunctions.addZeros(minValue);
-			maxValue = extraFunctions.addZeros(maxValue);
+			minValue = ExtraFunctions.addZeros(minValue);
+			maxValue = ExtraFunctions.addZeros(maxValue);
 			minValue = minValue.replace(".", "");
 			maxValue = maxValue.replace(".", "");
 		}
@@ -62,10 +60,10 @@ public class MyCitySearch extends extraFunctions{
 		int minVal = Integer.parseInt(minValue);
 		int maxVal = Integer.parseInt(maxValue);
 
-		MyResults results = new MyResults(m_database);
+		MyResults results = new MyResults();
 		int i = maxVal - minVal;
 		while (i-- > 0){
-			results.put(m_container.search(Integer.toString(i + minVal), -1));	
+			results.put(myContainer.search(Integer.toString(i + minVal), -1));	
 		}
 		return results;
 	}

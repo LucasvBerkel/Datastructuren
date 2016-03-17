@@ -1,36 +1,46 @@
 public class MyResults{
 	final int INITIALARRAYSIZE = 10;
 
-	int m_cityCount;
-	MyCityLink[][] m_cities;
-	MyCity[] m_database;
+	int myCityCount;
+	MyCityLink[][] myCities;
 	MySortedArray myArray;
 
-	String[][] m_table;
-
-
-	public MyResults(MyCity[] database){
-		m_cities = new MyCityLink[INITIALARRAYSIZE][];
-		m_cityCount = 0;
-		m_database = database;
+	/*
+	Object contains the array's with the CityLinks which matches the query, when called upon the values of
+	the two-dimensional array are inserted into the SortedArray.
+	*/
+	public MyResults(){
+		myCities = new MyCityLink[INITIALARRAYSIZE][];
+		myCityCount = 0;
 		myArray = new MySortedArray();
 	}
 
+	/*
+	Takes the array with CityLinks and add them to the two-dimensional array
+	Input(s):
+	- results, the array containing the CityLinks matching the query
+	Delivers no output(s)
+	*/
 	public void put(MyCityLink[] results){
-		m_cities[m_cityCount] = results;
-		m_cityCount++;
+		myCities[myCityCount] = results;
+		myCityCount++;
 
-		if (m_cityCount == m_cities.length){
+		if (myCityCount == myCities.length){
 			resizeCities();
 		}
 	}
 
+	/*
+	When called upon, takes the two-dimensional array and add every non null value to the SortedArray
+	Takes no input(s)
+	Delivers no output(s)
+	*/
 	public void addToArray(){
-		for (int i = 0; i < m_cityCount; i++){
-			if (m_cities[i] != null){
-				for (int j = 0; j < m_cities[i].length; j++){
-					if (m_cities[i][j] != null){
-						myArray.insert(m_cities[i][j].index);
+		for (int i = 0; i < myCityCount; i++){
+			if (myCities[i] != null){
+				for (int j = 0; j < myCities[i].length; j++){
+					if (myCities[i][j] != null){
+						myArray.insert(myCities[i][j].index);
 					}
 				}
 			}
@@ -38,35 +48,27 @@ public class MyResults{
 		myArray.sort();	
 	}
 
-	public void print(){
-		System.out.println("Concatenating results:...");
-		String output = "";
-		int counter = 0;
-
-		for (int i = 0; i < m_cityCount; i++){
-			if (m_cities[i] != null){
-
-				for (int j = 0; j < m_cities[i].length; j++){
-					if (m_cities[i][j] != null){
-						output += m_database[m_cities[i][j].index].name + "\n";
-						counter += 1;
-					}
-				}
-			}
-		}
-
-		System.out.print(output);
-		System.out.println("\n" + counter + " cities found matching the description");
-	}
-
+	/*
+	Doubles the size of the CityLink array
+	Takes no input(s)
+	Delivers no output(s)
+	*/
 	private void resizeCities(){
-		MyCityLink[][] buffer = new MyCityLink[m_cities.length][];
-		copy(m_cities, buffer, m_cities.length);
+		MyCityLink[][] buffer = new MyCityLink[myCities.length][];
+		copy(myCities, buffer, myCities.length);
 
-		m_cities = new MyCityLink[m_cities.length*2][];
-		copy(buffer, m_cities, buffer.length);
+		myCities = new MyCityLink[myCities.length*2][];
+		copy(buffer, myCities, buffer.length);
 	}
 
+	/*
+	Copies the data from one CityLink array to another
+	Input(s):
+	- src, the source array
+	- dst, the destination array
+	- length, the total number of elements to be copied
+	Delivers no output(s)
+	*/
 	private void copy(MyCityLink[][] src, MyCityLink[][] dst, int length){
 		for (int i = 0; i < length; i++){
 			if (src[i] != null){
