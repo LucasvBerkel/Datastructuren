@@ -83,7 +83,6 @@ public class MyContainer{
 		}
 	}
 
-
 	private void resizeContainers(){
 		MyContainer[] buffer = new MyContainer[m_containers.length];
 		copy(m_containers, buffer, m_containers.length);
@@ -99,7 +98,6 @@ public class MyContainer{
 		m_cities = new MyCityLink[m_cities.length*2];
 		copy(buffer, m_cities, buffer.length);
 	}
-
 
 	private <T> void copy(T[] src, T[] dst, int length){
 		int i = length;
