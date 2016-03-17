@@ -2,12 +2,12 @@ public class MyContainer{
 	final int INITIALARRAYSIZE = 10;
 
 	public char CHARACTER;
-	int m_containerCount;
-	int m_cityCount;
+	int myContainerCounter;
+	int myCityCount;
 
-	MyCity[] m_database;
-	MyCityLink[] m_cities;
-	MyContainer[] m_containers;
+	MyCity[] myDatabase;
+	MyCityLink[] myCities;
+	MyContainer[] myContainers;
 
 	public MyContainer(char character, MyCity[] database){
 		this(database);
@@ -16,32 +16,28 @@ public class MyContainer{
 	} 
 
 	public MyContainer(MyCity[] database){
-		m_database = database;
+		myDatabase = database;
 
-		m_cities = new MyCityLink[INITIALARRAYSIZE];
-		m_cityCount = 0;
+		myCities = new MyCityLink[INITIALARRAYSIZE];
+		myCityCount = 0;
 
-		m_containers = new MyContainer[INITIALARRAYSIZE];
-		m_containerCount = 0;
+		myContainers = new MyContainer[INITIALARRAYSIZE];
+		myContainerCounter = 0;
 	} 
 
 	public MyCityLink[] search(String value, int charIndex){
 		int newIndex = charIndex + 1;
 
 		if (newIndex < value.length()){
-			int i = m_containerCount;
+			int i = myContainerCounter;
 			while (i-- > 0){
-				if (m_containers[i].CHARACTER == value.charAt(newIndex)){
-					return m_containers[i].search(value, newIndex);
+				if (myContainers[i].CHARACTER == value.charAt(newIndex)){
+					return myContainers[i].search(value, newIndex);
 				}
 			}
 		} 
 		else {
-			// System.out.println("\n Ping \n");
-			// try{
-			// 	System.out.println(m_cities[0].index);
-			// } catch (NullPointerException e){ }	
-			return m_cities;
+			return myCities;
 		}
 
 		return null;
@@ -51,32 +47,32 @@ public class MyContainer{
 		int newIndex = charIndex + 1;
 
 		// Add new container
-		if (newIndex < city.value_string.length()) {
+		if (newIndex < city.valueString.length()) {
 			
-			int i = m_containerCount;
+			int i = myContainerCounter;
 			while (i-- > 0){
-				if (m_containers[i].CHARACTER == city.value_string.charAt(newIndex)){
-					m_containers[i].put(city, newIndex);
+				if (myContainers[i].CHARACTER == city.valueString.charAt(newIndex)){
+					myContainers[i].put(city, newIndex);
 					return;
 				}
 			}
 			
-			char newChar = city.value_string.charAt(newIndex);
-			m_containers[m_containerCount] = new MyContainer(newChar, m_database);
-			m_containers[m_containerCount].put(city, newIndex);
-			m_containerCount++;
+			char newChar = city.valueString.charAt(newIndex);
+			myContainers[myContainerCounter] = new MyContainer(newChar, myDatabase);
+			myContainers[myContainerCounter].put(city, newIndex);
+			myContainerCounter++;
 
-			if (m_containerCount == m_containers.length){
+			if (myContainerCounter == myContainers.length){
 				resizeContainers(); 
 			}
 		}
 
 		// Save the city
 		else {
-			m_cities[m_cityCount] = city;
-			m_cityCount++;
+			myCities[myCityCount] = city;
+			myCityCount++;
 
-			if (m_cityCount == m_cities.length){
+			if (myCityCount == myCities.length){
 				resizeCities(); 
 
 			}
@@ -84,19 +80,19 @@ public class MyContainer{
 	}
 
 	private void resizeContainers(){
-		MyContainer[] buffer = new MyContainer[m_containers.length];
-		copy(m_containers, buffer, m_containers.length);
+		MyContainer[] buffer = new MyContainer[myContainers.length];
+		copy(myContainers, buffer, myContainers.length);
 
-		m_containers = new MyContainer[m_containers.length*2];
-		copy(buffer, m_containers, buffer.length);
+		myContainers = new MyContainer[myContainers.length*2];
+		copy(buffer, myContainers, buffer.length);
 	}
 
 	private void resizeCities(){
-		MyCityLink[] buffer = new MyCityLink[m_cities.length];
-		copy(m_cities, buffer, m_cities.length);
+		MyCityLink[] buffer = new MyCityLink[myCities.length];
+		copy(myCities, buffer, myCities.length);
 
-		m_cities = new MyCityLink[m_cities.length*2];
-		copy(buffer, m_cities, buffer.length);
+		myCities = new MyCityLink[myCities.length*2];
+		copy(buffer, myCities, buffer.length);
 	}
 
 	private <T> void copy(T[] src, T[] dst, int length){

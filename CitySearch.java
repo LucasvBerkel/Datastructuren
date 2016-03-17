@@ -7,20 +7,27 @@ import java.io.IOException;
 import java.lang.Object;
 import java.util.Scanner;
 
-public class CitySearch{
+public class CitySearch extends ExtraFunctions{
 
 	static final String csvFile = "cities1000Correct.csv";
-	static MyCity[] m_database;
+	static MyCity[] myDatabase;
 
+	/* 
+	The Main function, initializes the tree's, from where the input is first check for correctness, after that
+	the queries are performed first individualy, after that the SortedArray are combined using binary search.
+	Takes no input(s)
+	Output(s):
+	- prints the city matching the description
+	*/
 	public static void main(String[] args){
 		int arraySize = getLineCount(csvFile);
 		writeToDatabase(csvFile, arraySize);
 
-		MyCitySearch searchLatitude = new MyCitySearch(m_database, enums.Key.LATITUDE);
-		MyCitySearch searchLongitude = new MyCitySearch(m_database, enums.Key.LONGITUDE);
-		MyCitySearch searchCountry = new MyCitySearch(m_database, enums.Key.COUNTRY);
-		MyCitySearch searchPopulation = new MyCitySearch(m_database, enums.Key.POPULATION);
-		MyCitySearch searchElevation = new MyCitySearch(m_database, enums.Key.ELEVATION);
+		MyCitySearch searchLatitude = new MyCitySearch(myDatabase, enums.Key.LATITUDE);
+		MyCitySearch searchLongitude = new MyCitySearch(myDatabase, enums.Key.LONGITUDE);
+		MyCitySearch searchCountry = new MyCitySearch(myDatabase, enums.Key.COUNTRY);
+		MyCitySearch searchPopulation = new MyCitySearch(myDatabase, enums.Key.POPULATION);
+		MyCitySearch searchElevation = new MyCitySearch(myDatabase, enums.Key.ELEVATION);
 
 		MyCitySearch[] searchers = new MyCitySearch[5];
 		searchers[0] = searchLatitude;
@@ -51,6 +58,11 @@ public class CitySearch{
 				long startTime = 0;
 				long endTime = 0;
 
+				if(!ExtraFunctions.checkInput(str)){
+					printMessage();
+					continue;
+				}
+
 				String[] splittedString = str.split(" ");
 				String[] queries = abstractParts(splittedString, 0);
 				String[] conjuctions = abstractParts(splittedString, 1);
@@ -67,7 +79,7 @@ public class CitySearch{
 
 				endTime = System.nanoTime();
 
-				results[results.length-1].print(m_database);
+				results[results.length-1].print(myDatabase);
 
 				long totalTime = endTime - startTime;
 				System.out.println("\nNanoseconds: " + totalTime);
@@ -78,43 +90,92 @@ public class CitySearch{
         }
 	}
 
+	/* 
+	The combine-function takes the SortedArrays and the array with conjunctions, in order to enable more
+	advanced queries, the AND conjunction is given preference before the OR conjunction
+	Input(s):
+	- results, the array with the SortedArray's
+	- conjunctions, the array with the given conjunctions.
+	Output(s):
+	- result[p], the final SortedArray containing the final result
+	*/
 	private static MySortedArray combine(MySortedArray[] results, String[] conjuctions){
+		int counter = 0;
+		int[] conjuctionsOR = new int[conjuctions.length];
 		for(int i = 0; i < conjuctions.length; i++){
 			if(conjuctions[i].equals("AND")){
 				results[i+1] = and(results[i], results[i+1]);
+				results[i] = null;
 			} else {
-				results[i+1] = or(results[i], results[i+1]);
+				conjuctionsOR[counter] = i;
+				counter++;
 			}
 		}
-		return results[results.length-1];
+		int p = conjuctions.length-1;
+		for(int j = 0; j < counter; j++){
+			p = conjuctionsOR[j] + 1;
+			MySortedArray firstArray = results[p-1];
+			MySortedArray secondArray = results[p];
+			while(secondArray == null){
+				p++;
+				secondArray = results[p];
+			}
+			results[p] = or(firstArray, secondArray);
+		}
+		return results[p];
 	}
 
+	/* 
+	This function combines two SortedArray's by adding all elements available in both SortedArray's
+	Input(s):
+	- array1, first SortedArray of two to be combined
+	- array2, second SortedArray of two to be combined
+	Output(s):
+	- resultArray, the combined SortedArray
+	*/
 	private static MySortedArray and(MySortedArray array1, MySortedArray array2){
 		MySortedArray resultArray = new MySortedArray();
-		for(int i = 0; i < array1.m_array.length; i++){
-			if(array2.search(array1.m_array[i])){
-				resultArray.insert(array1.m_array[i]);
+		for(int i = 0; i < array1.myArray.length; i++){
+			if(array2.search(array1.myArray[i])){
+				resultArray.insert(array1.myArray[i]);
 			}
 		}
 		resultArray.sort();
 		return resultArray;
 	}
 
+	/*
+	This function combines two SortedArray's by adding all elements from the first array to the resultarray and
+	adding the remaining elements in array2 which are not present in array1
+	Input(s):
+	- array1, first SortedArray of two to be combined
+	- array2, second SortedArray of two to be combined
+	Output(s):
+	- resultArray, the combined SortedArray	
+	*/
 	private static MySortedArray or(MySortedArray array1, MySortedArray array2){
 		MySortedArray resultArray = new MySortedArray();
-		for(int i = 0; i < array2.m_array.length; i++){
-			resultArray.insert(array2.m_array[i]);
+		for(int i = 0; i < array2.myArray.length; i++){
+			resultArray.insert(array2.myArray[i]);
 		}
-		for(int i = 0; i < array1.m_array.length; i++){
-			if(!array2.search(array1.m_array[i])){
-				resultArray.insert(array1.m_array[i]);
+		for(int i = 0; i < array1.myArray.length; i++){
+			if(!array2.search(array1.myArray[i])){
+				resultArray.insert(array1.myArray[i]);
 			}
 		}
 		resultArray.sort();
 		return resultArray;
 	}
 
-	public static MySortedArray performQuery(MyCitySearch[] searchers, String query){
+	/*
+	Takes a query, retrieves the right tree and returns the resulting SortedArray
+	Input(s):
+	- searchers, array of tree's, used to perform the query
+	- query, bit of entire query, in the form of "EL:3,10"
+	Output(s):
+	- results.myArray, the SortedArray with the results of the query
+	*/
+	private static MySortedArray performQuery(MyCitySearch[] searchers, String query){
 		MyResults results;
         String[] subQuery = query.split(":");
         MyCitySearch searcher;
@@ -146,6 +207,11 @@ public class CitySearch{
 	    return results.myArray;
 	}
 
+	/*
+	Prints query form in order to help the user
+	Takes no input(s)
+	Delivers no output(s)
+	*/
 	private static void printMessage(){
 		System.out.println("\nEnter min and max Latitude(LA)/Longitude(LO)/Population(PO)/Elevation(EL), like this:");
 	    System.out.println("LA:12.213,22.242");
@@ -155,6 +221,14 @@ public class CitySearch{
 	    System.out.println("EL:3,10 AND LC:DE\n");
 	}
 
+	/*
+	Takes the entire querystring and returns the array of queries or conjunctions, given the begin(1 or 0)
+	Input(s):
+	- splittedString, the entire query splitted by spacebars
+	- begin, 0 when to retrieve the queries, 1 to retrieve the conjunctions
+	Output(s):
+	- subParts, array of Strings containing the queries or conjunctions
+	*/
 	private static String[] abstractParts(String[] splittedString, int begin){
 		int length = splittedString.length-(splittedString.length/2)-begin;
 		String[] subParts = new String[length];
@@ -166,8 +240,15 @@ public class CitySearch{
 		return subParts;
 	}
 
+	/*
+	Function takes the filename and the length of the file and makes the array of MyCity's, which is the database.
+	Input(s):
+	- fileName, the name of the file containing the data
+	- arraySize, the linecount of the data-file
+	Delivers no output(s), but initializes the database
+	*/
 	private static void writeToDatabase(String fileName, int arraySize){
-		m_database = new MyCity[arraySize];
+		myDatabase = new MyCity[arraySize];
 
 		File file = new File(fileName);
 		BufferedReader br = null;
@@ -187,7 +268,7 @@ public class CitySearch{
 				for (int j = 0; j < values.length; j++){
 					city.put(values[j], j, counter);
 				}
-				m_database[i++] = city;
+				myDatabase[i++] = city;
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -204,7 +285,15 @@ public class CitySearch{
 		}
   	}
 
-  	public static int getLineCount(String fileName){
+
+  	/*
+	Takes the name of the data-file and counts the number of lines in it
+	Input(s):
+	- fileName, the name of the file containing the data
+	Output(s):
+	- counter, total number of lines in data-file
+  	*/
+  	private static int getLineCount(String fileName){
   		File file = new File(fileName);
 
 		BufferedReader reader = null;
