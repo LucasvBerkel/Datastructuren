@@ -6,7 +6,7 @@ public class MySortedArray{
 	int[] myArray;
 
 	/*
-	SortedArray is an object that contains the results of the queries
+	SortedArray is an object that contains the results of the queries.
 	*/
 	public MySortedArray(){
 		myArray = new int[INITIALARRAYSIZE];
@@ -14,10 +14,10 @@ public class MySortedArray{
 	}
 
 	/*
-	Takes a int value and places it in the next slot in the array
+	Takes a int value and places it in the next slot in the array.
 	Input(s):
-	- value, an int value
-	Delivers no output(s)
+	- value, an int value.
+	Delivers no output(s).
 	*/
 	public void insert(int value){
 		if(myArray.length <= currentIndex){
@@ -28,10 +28,10 @@ public class MySortedArray{
 	}
 
 	/*
-	If called upon, reduces the size of the array to the total number of added values(other words, zeros are discarded)
-	and sorts the array, to enable binary search
-	Takes no input(s)
-	Delivers no output(s)
+	If called upon, reduces the size of the array to the total number of added values
+	(other words, zeros are discarded) and sorts the array, to enable binary search.
+	Takes no input(s).
+	Delivers no output(s).
 	*/
 	public void sort(){
 		int[] buffer = new int[currentIndex];
@@ -43,11 +43,12 @@ public class MySortedArray{
 	}
 
 	/*
-	Takes value to be searched, if value falls outside range, false is returned, if not, binary search is performed
+	Takes value to be searched, if value falls outside range, false is returned, if not, 
+	binary search is performed.
 	Input(s):
-	- value, int value to be searched
+	- value, int value to be searched.
 	Output(s):
-	- boolean, true if array contains given value
+	- boolean, true if array contains given value.
 	*/
 	public boolean search(int value){
 		if(value < myArray[0] || value > myArray[currentIndex-1]){
@@ -59,8 +60,8 @@ public class MySortedArray{
 
 
 	/*
-	Binary search, takes the value, begin and end. The last to values are the window in which the search is performed.
-	Due to recursion, the window narrows every step.
+	Binary search, takes the value, begin and end. The last to values are the window in which
+	the search is performed. Due to recursion, the window narrows every step.
 	Input(s):
 	- value, int value to be searched
 	- begin, lowest value of the window in the array
@@ -82,10 +83,11 @@ public class MySortedArray{
 	}
 
 	/*
-	Prints the cities which are present in the array
+	Prints the cities which are present in the array.
 	Input(s):
-	- database, database used to retrieve of the names of the cities which indexes are saved in the array
-	Delivers no output(s)
+	- database, database used to retrieve of the names of the cities which indexes are saved in 
+	the array.
+	Delivers no output(s).
 	*/
 	public void print(MyCity[] database){
 		for (int element:myArray){
@@ -96,9 +98,9 @@ public class MySortedArray{
 	}
 
 	/*
-	Resizes the array twice the size
-	Takes no input(s)
-	Delivers no output(s)
+	Resizes the array twice the size.
+	Takes no input(s).
+	Delivers no output(s).
 	*/
 	private void resizeArray(){
 		int[] buffer = new int[myArray.length];
@@ -109,13 +111,13 @@ public class MySortedArray{
 	}
 
 	/*
-	Copies the values of one array to another
+	Copies the values of one array to another.
 	Input(s):
-	- src, the source array
-	- dst, the destination array
-	- length, the total number of elements to be copied
+	- src, the source array.
+	- dst, the destination array.
+	- length, the total number of elements to be copied.
 	Output(s):
-	- dst, the resulting array
+	- dst, the resulting array.
 	*/
 	private int[] copy(int[] src, int[] dst, int length){
 		int i = length;

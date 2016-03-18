@@ -6,8 +6,8 @@ public class MyResults{
 	MySortedArray myArray;
 
 	/*
-	Object contains the array's with the CityLinks which matches the query, when called upon the values of
-	the two-dimensional array are inserted into the SortedArray.
+	Object contains the array's with the CityLinks which matches the query, when called upon the 
+	values of the two-dimensional array are inserted into the SortedArray.
 	*/
 	public MyResults(){
 		myCities = new MyCityLink[INITIALARRAYSIZE][];
@@ -16,7 +16,7 @@ public class MyResults{
 	}
 
 	/*
-	Takes the array with CityLinks and add them to the two-dimensional array
+	Takes the array with CityLinks and add them to the two-dimensional array.
 	Input(s):
 	- results, the array containing the CityLinks matching the query
 	Delivers no output(s)
@@ -31,7 +31,7 @@ public class MyResults{
 	}
 
 	/*
-	When called upon, takes the two-dimensional array and add every non null value to the SortedArray
+	When called upon, takes the two-dimensional array and add every non null value to the SortedArray.
 	Takes no input(s)
 	Delivers no output(s)
 	*/
@@ -49,9 +49,9 @@ public class MyResults{
 	}
 
 	/*
-	Doubles the size of the CityLink array
-	Takes no input(s)
-	Delivers no output(s)
+	Doubles the size of the CityLink array.
+	Takes no input(s).
+	Delivers no output(s).
 	*/
 	private void resizeCities(){
 		MyCityLink[][] buffer = new MyCityLink[myCities.length][];
@@ -62,12 +62,12 @@ public class MyResults{
 	}
 
 	/*
-	Copies the data from one CityLink array to another
+	Copies the data from one CityLink array to another.
 	Input(s):
-	- src, the source array
-	- dst, the destination array
-	- length, the total number of elements to be copied
-	Delivers no output(s)
+	- src, the source array.
+	- dst, the destination array.
+	- length, the total number of elements to be copied.
+	Delivers no output(s).
 	*/
 	private void copy(MyCityLink[][] src, MyCityLink[][] dst, int length){
 		for (int i = 0; i < length; i++){

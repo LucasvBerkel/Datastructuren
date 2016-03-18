@@ -2,6 +2,16 @@ public class MyCitySearch extends ExtraFunctions{
 
 	MyContainer myContainer;
 
+	/* 
+	The MyCitySearch constructor checks which parameter is asked for and puts the relevant 
+	values in MyCityLink that contains the index of MyCity that has to be retreived later.
+	In this loop every MyCity is converted to a MyCityLink. Every MyCityLink is put in
+	a MyContainer.
+    Input(s):
+    - database, the MyCity[] database.
+    key, the parameter that is asked for. 
+    Delivers no output(s) but put's the values in MyContainer. 
+    */
 	public MyCitySearch(MyCity[] database, enums.Key key){
 		myContainer = new MyContainer(database);
 
@@ -42,6 +52,13 @@ public class MyCitySearch extends ExtraFunctions{
 		}
 	}
 
+	/* 
+	The search function for searching a landcode. 
+	Input(s): 
+	- landCode, the landCode that has to be searched. 
+	Output(s): 
+	- results, the results matching the landCode. 
+	*/
 	public MyResults search(String landCode){
 		MyResults results = new MyResults();
 		results.put(myContainer.search(landCode, -1));
@@ -49,6 +66,15 @@ public class MyCitySearch extends ExtraFunctions{
 		return results;
 	}
 
+	/* 
+	The search function for searching a range. 
+	Input(s):
+	- minValue, start of range.
+	- maxValue, end of range.
+	- query, type of query to make values correct.
+	Output(s):
+	- results, the results matching the range.
+	*/
 	public MyResults search(String minValue, String maxValue, String query){
 		if(query.equals("LA") || query.equals("LO")){
 			minValue = ExtraFunctions.addZeros(minValue);

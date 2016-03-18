@@ -11,6 +11,14 @@ public class MyCity extends ExtraFunctions{
 	public int populationInt;
 	public int elevationInt;
 
+	/* 
+	The put function initialises all values of a city.
+	Input(s):
+	- value, name of the city.
+	- index, the index of the parameter. 
+	- counter, counter of the lines processed until now. 
+	Delivers no output(s) but initialises the Strings and ints of MyCity. 
+	*/
 	public void put(String value, int index, int counter){		
 
 		switch (index) {

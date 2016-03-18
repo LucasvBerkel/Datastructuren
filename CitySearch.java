@@ -13,8 +13,9 @@ public class CitySearch extends ExtraFunctions{
 	static MyCity[] myDatabase;
 
 	/* 
-	The Main function, initializes the tree's, from where the input is first check for correctness, after that
-	the queries are performed first individualy, after that the SortedArray are combined using binary search.
+	The Main function, initializes the tree's, from where the input is first check for correctness,
+	after that the queries are performed first individualy, after that the SortedArray are combined
+	using binary search.
 	Takes no input(s)
 	Output(s):
 	- prints the city matching the description
@@ -91,8 +92,8 @@ public class CitySearch extends ExtraFunctions{
 	}
 
 	/* 
-	The combine-function takes the SortedArrays and the array with conjunctions, in order to enable more
-	advanced queries, the AND conjunction is given preference before the OR conjunction
+	The combine-function takes the SortedArrays and the array with conjunctions, in order to enable
+	more advanced queries, the AND conjunction is given preference before the OR conjunction
 	Input(s):
 	- results, the array with the SortedArray's
 	- conjunctions, the array with the given conjunctions.
@@ -145,8 +146,8 @@ public class CitySearch extends ExtraFunctions{
 	}
 
 	/*
-	This function combines two SortedArray's by adding all elements from the first array to the resultarray and
-	adding the remaining elements in array2 which are not present in array1
+	This function combines two SortedArray's by adding all elements from the first array to the 
+	resultarray and adding the remaining elements in array2 which are not present in array1
 	Input(s):
 	- array1, first SortedArray of two to be combined
 	- array2, second SortedArray of two to be combined
@@ -222,7 +223,8 @@ public class CitySearch extends ExtraFunctions{
 	}
 
 	/*
-	Takes the entire querystring and returns the array of queries or conjunctions, given the begin(1 or 0)
+	Takes the entire querystring and returns the array of queries or conjunctions, 
+	given the begin(1 or 0).
 	Input(s):
 	- splittedString, the entire query splitted by spacebars
 	- begin, 0 when to retrieve the queries, 1 to retrieve the conjunctions
@@ -241,7 +243,8 @@ public class CitySearch extends ExtraFunctions{
 	}
 
 	/*
-	Function takes the filename and the length of the file and makes the array of MyCity's, which is the database.
+	Function takes the filename and the length of the file and makes the array of MyCity's, 
+	which is the database.
 	Input(s):
 	- fileName, the name of the file containing the data
 	- arraySize, the linecount of the data-file
@@ -284,7 +287,6 @@ public class CitySearch extends ExtraFunctions{
 			}
 		}
   	}
-
 
   	/*
 	Takes the name of the data-file and counts the number of lines in it
