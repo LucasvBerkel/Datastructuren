@@ -1,3 +1,10 @@
+/* 
+   File: MyCitySearch.java
+   Authors: Lucas van Berkel(lucasvberkel@gmail.com) 10747958, 
+			Joël Meyer(rinyjoel@live.nl) 10003539.
+   Date: 	18-03-2016
+   Description: This class saves the relevant parameter in the datastructure. 
+*/
 public class MyCitySearch extends ExtraFunctions{
 
 	MyContainer myContainer;

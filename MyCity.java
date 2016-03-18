@@ -1,3 +1,10 @@
+/* 
+   File: MyCity.java
+   Authors: Lucas van Berkel(lucasvberkel@gmail.com) 10747958, 
+			Joël Meyer(rinyjoel@live.nl) 10003539.
+   Date: 	18-03-2016
+   Description: This class holds the information relevant to a city. 
+*/
 public class MyCity extends ExtraFunctions{
 	public String name;
 	public String latitude;

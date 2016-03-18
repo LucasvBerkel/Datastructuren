@@ -1,3 +1,10 @@
+/* 
+   File: MyResults.java
+   Authors: Lucas van Berkel(lucasvberkel@gmail.com) 10747958, 
+			Joël Meyer(rinyjoel@live.nl) 10003539.
+   Date: 	18-03-2016
+   Description: This class represents the results of a query. 
+*/
 public class MyResults{
 	final int INITIALARRAYSIZE = 10;
 

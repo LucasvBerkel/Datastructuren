@@ -1,3 +1,10 @@
+/* 
+   File: MyContainer.java
+   Authors: Lucas van Berkel(lucasvberkel@gmail.com) 10747958, 
+			Joël Meyer(rinyjoel@live.nl) 10003539.
+   Date: 	18-03-2016
+   Description: This class represents a tree datastructure.
+*/
 public class MyContainer{
 	final int INITIALARRAYSIZE = 10;
 

@@ -1,3 +1,11 @@
+/* 
+   File: CitySearch.java
+   Authors: Lucas van Berkel(lucasvberkel@gmail.com) 10747958, 
+			Joël Meyer(rinyjoel@live.nl) 10003539.
+   Date: 	18-03-2016
+   Description: This class executes the whole program altogether. 
+*/
+
 import java.io.BufferedReader;
 import java.io.Console;
 import java.io.File;
